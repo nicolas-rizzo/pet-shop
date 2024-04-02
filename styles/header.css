@@ -20,6 +20,7 @@ a{
     top: 0;
     left: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    z-index: 1;
 }
 .contentLogo{
     display: flex;
@@ -52,13 +53,13 @@ a{
     font-size: 1.1rem;
     color: black;
     font-weight:bold;
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
 }
 .links a:hover{
     color:var(--ColorPrincipal);
 }
 .lineaNegra{
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(98, 98, 98, 0.4);
     height: 1px;
     margin:0.9rem 0 ;
 }
