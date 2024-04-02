@@ -1,11 +1,5 @@
-*{
-    padding: 0;
-    margin: 0;
-    font-family: "Open Sans", sans-serif;
-}
-:root{
-    --ColorPrincipal:#F58500;
-}
+@import url(./base.css);
+
 .IframeHeader{
     width: 100% ;
     position: sticky;
@@ -17,6 +11,11 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
+    margin-top: 4rem;
+}
+.avisosContenido p{
+    font-size: 1.1rem;
+    text-align: center;
 }
 .avisosTitulo{
     display: flex;
@@ -29,10 +28,19 @@
     font-size: 2.3rem;
 }
 .avisosTitulo p{
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.6rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.3rem;
 }
 .avisosTitulo:hover{
     color: var(--ColorPrincipal);
+}
+.mainProductos{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
+.mainProductos .titulo{
+    text-align: center;
+    font-size: 2.5rem;
 }
