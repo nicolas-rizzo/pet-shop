@@ -23,3 +23,20 @@ const productos = [
 ];
 
 const animales = ["Perro","Gato","Aves","Conejo","Tortuga"];
+
+const cargarListaAnimales =()=>{
+    const listaAnimales = document.getElementById('animales');
+    let animal = document.createElement('option');
+    animal.textContent="Seleccione un animal";
+    animal.value="todos";
+    listaAnimales.appendChild(animal);
+    animales.forEach(anim => {
+        let animal = document.createElement('option');
+        animal.textContent = anim;
+        animal.value=anim;
+        listaAnimales.appendChild(animal)
+    })
+}
+
+
+cargarListaAnimales();
