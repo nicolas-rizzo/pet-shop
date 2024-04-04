@@ -1,0 +1,44 @@
+@import url(./base.css);
+
+.footer{
+    background-color: #222222;
+}
+.contenedorFooter{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+img{
+    width: 10%;
+    margin: 1rem 0;
+}
+.contenedorRedes{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-top: 1px solid #BFBFBF;
+    padding: 1.5rem 0;
+}
+.contenedorRedes p{
+    color: white;
+    font-size: 1rem;
+}
+.iconosRedes{
+    display: flex;
+    gap: 1rem;
+}
+.iconosRedes a{
+    background-color: white;
+    padding: 0.3rem 0.5rem;
+    border-radius: 100%;
+}
+.iconosRedes i{
+    color: black;
+    font-size: 1.2rem;
+}
+
+
