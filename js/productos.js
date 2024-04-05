@@ -112,7 +112,7 @@ const animales = ["Perro","Gato","Aves","Conejo","Tortuga"];
 const cargarListaAnimales =()=>{
     const listaAnimales = document.getElementById('animales');
     let animal = document.createElement('option');
-    animal.textContent="Seleccione un animal";
+    animal.textContent="Todos los animales";
     animal.value="todos";
     listaAnimales.appendChild(animal);
     animales.forEach(anim => {

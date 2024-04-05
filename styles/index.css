@@ -1,0 +1,16 @@
+@import url(./base.css);
+
+.IframeHeader{
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+}
+
+.iframeFooter{
+    width: 100%;
+    height: 25vh;
+    margin-top: 2rem;
+    background-color: #222222;
+    overflow: hidden;
+}
