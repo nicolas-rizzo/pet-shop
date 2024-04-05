@@ -116,3 +116,55 @@
     background-color: #222222;
     overflow: hidden;
 }
+
+@media(max-width:480px){
+    .avisos{
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 1rem;
+    }
+    .avisosContenido p{
+        font-size: 1rem;
+    }
+    .avisosTitulo i{
+        font-size: 2.1rem;
+    }
+    .avisosTitulo p{
+        font-size: 1.1rem;
+    }
+    .mainProductos .titulo{
+        font-size: 2.2rem;
+    }
+    .contenedorProductos{
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    .filtros{
+        width: 100%;
+    }
+    .filtros .titulo{
+        font-size: 1.2rem;
+    }
+    .filtroAnimal{
+        font-size: 1.1rem;
+    }
+    .listaProductos{
+        width: 100%;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    .contenedorProducto{
+        flex-basis: calc(100% - 20px);
+        margin-bottom: 0.5rem;
+    }
+    .imagenProducto{
+        width: 60%;
+    }
+    .descripcionProducto{
+        font-size: 1rem;
+    }
+    .precioProducto{
+        font-size: 1.1rem;
+    }
+}
