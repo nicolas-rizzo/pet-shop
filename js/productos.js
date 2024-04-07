@@ -221,16 +221,6 @@ listaAnimales.addEventListener('change',()=>{
             listaProductos.appendChild(divProducto)
         }
     })
-
-    const botones = document.getElementsByClassName('botonCarrito');
-
-    // Itera sobre cada botón y agrega el evento
-    for (let i = 0; i < botones.length; i++) {
-        const boton = botones[i];
-        boton.addEventListener('click', () => {
-            agregarAlCarrito(boton.value);
-        });
-    }
     
 })
 
@@ -270,12 +260,15 @@ const agregarAlCarrito=(id)=>{
             
             /*CREANDO LOS ICONOS*/
             let iconoMas = document.createElement('i')
-            iconoMas.className="bi bi-plus icono";
+            iconoMas.className="bi bi-plus icono suma";
+            iconoMas.value=producto.id;
             let contador = document.createElement('p')
             contador.textContent=1;
             contador.className="contador";
+            contador.value=producto.id;
             let iconoMenos = document.createElement('i')
-            iconoMenos.className="bi bi-dash icono";
+            iconoMenos.className="bi bi-dash icono menos";
+            iconoMenos.value=producto.id;
             let iconoBasura = document.createElement('i')
             iconoBasura.className="bi bi-trash3-fill icono basura";
 
@@ -294,4 +287,53 @@ const agregarAlCarrito=(id)=>{
         }
     });
 
+    /*INCREMENTAR O DECREMENTAR EL CONTADOR DEL CARRITO*/
+
+    const botonesSuma = document.getElementsByClassName('suma');
+    const botonesResta = document.getElementsByClassName('menos');
+    const contadores = document.getElementsByClassName('contador');
+
+    for (let i = 0; i < botonesSuma.length; i++) {
+        const botonS = botonesSuma[i];
+        const botonR= botonesResta[i];
+
+        /*SUMA*/
+        botonS.addEventListener('click', () => {
+            for (let i = 0; i < contadores.length; i++){
+                const contador = contadores[i];
+                if(botonS.value===contador.value){
+                    let valor = parseInt(contador.textContent) + 1;
+                    contador.textContent=valor;
+                }
+            }
+        });
+
+        /*RESTA*/
+        botonR.addEventListener('click', () => {
+            for (let i = 0; i < contadores.length; i++){
+                const contador = contadores[i];
+                if(botonR.value===contador.value){
+                    let valor = parseInt(contador.textContent) -1;
+                    if(valor>0){
+                        contador.textContent=valor;
+                    }
+                }
+            }
+        });
+    }
 }
+
+/*-------------------------*/
+
+/*ELIMINAR TODOS LOS PRODUCTOS DEL CARRITO*/
+
+const botonEliminarCarrito =document.getElementById('botonEliminarTodo');
+
+botonEliminarCarrito.addEventListener('click',()=>{
+    const listaCarrito = document.getElementById('listaCarrito');
+    listaCarrito.innerHTML = "";
+})
+
+/*------------------------*/
+
+
