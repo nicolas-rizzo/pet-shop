@@ -1,4 +1,4 @@
-const productos = [
+const PRODUCTOS = [
     {
         id:1,
         animal:"Perro",
@@ -106,7 +106,7 @@ const productos = [
     }
 ];
 
-const animales = ["Perro","Gato","Aves","Conejo","Tortuga"];
+const ANIMALES = ["Perro","Gato","Aves","Conejo","Tortuga"];
 
 /*CARGAMOS AL SELECT TODOS LOS ANIMALES DEL ARRAY*/
 const cargarListaAnimales =()=>{
@@ -115,7 +115,7 @@ const cargarListaAnimales =()=>{
     animal.textContent="Todos los animales";
     animal.value="todos";
     listaAnimales.appendChild(animal);
-    animales.forEach(anim => {
+    ANIMALES.forEach(anim => {
         let animal = document.createElement('option');
         animal.textContent = anim;
         animal.value=anim;
@@ -130,11 +130,12 @@ cargarListaAnimales();
 /*CARGAMOS TODOS LOS PRODUCTOS DEL OBJETO PRODUCTOS EN LA PAGINA*/
 const cargarProductos =()=>{
     const listaProductos = document.getElementById('listaProductos');
-    productos.forEach(producto => {
+    PRODUCTOS.forEach(producto => {
         let divProducto = document.createElement('div')
         let imagenProducto = document.createElement('img');
         let descripcionProducto = document.createElement('p');
         let precioProductos = document.createElement('p');
+        let botonCarrito = document.createElement('button');
 
         divProducto.className="contenedorProducto"
 
@@ -148,12 +149,28 @@ const cargarProductos =()=>{
         precioProductos.textContent=`${producto.precio}$`
         precioProductos.className="precioProducto"
 
+        botonCarrito.textContent="Agregar al carrito";
+        botonCarrito.value=producto.id;
+        botonCarrito.className="botonCarrito";
+
         divProducto.appendChild(imagenProducto);
         divProducto.appendChild(descripcionProducto);
         divProducto.appendChild(precioProductos);
+        divProducto.appendChild(botonCarrito);
         listaProductos.appendChild(divProducto)
     })
+
+    const botones = document.getElementsByClassName('botonCarrito');
+
+    // Itera sobre cada botón y agrega el evento
+    for (let i = 0; i < botones.length; i++) {
+        const boton = botones[i];
+        boton.addEventListener('click', () => {
+            agregarAlCarrito(boton.value);
+        });
+    }
 }
+
 
 cargarProductos();
 
@@ -173,12 +190,13 @@ listaAnimales.addEventListener('change',()=>{
         return;
     }
 
-    productos.forEach(producto => {
+    PRODUCTOS.forEach(producto => {
         if(producto.animal===animalElegido){
             let divProducto = document.createElement('div')
             let imagenProducto = document.createElement('img');
             let descripcionProducto = document.createElement('p');
             let precioProductos = document.createElement('p');
+            let botonCarrito = document.createElement('button');
 
             divProducto.className="contenedorProducto"
 
@@ -192,12 +210,88 @@ listaAnimales.addEventListener('change',()=>{
             precioProductos.textContent=`${producto.precio}$`
             precioProductos.className="precioProducto"
 
+            botonCarrito.textContent="Agregar al carrito";
+            botonCarrito.value=producto.id;
+            botonCarrito.className="botonCarrito";
+
             divProducto.appendChild(imagenProducto);
             divProducto.appendChild(descripcionProducto);
             divProducto.appendChild(precioProductos);
+            divProducto.appendChild(botonCarrito);
             listaProductos.appendChild(divProducto)
         }
     })
 
+    const botones = document.getElementsByClassName('botonCarrito');
+
+    // Itera sobre cada botón y agrega el evento
+    for (let i = 0; i < botones.length; i++) {
+        const boton = botones[i];
+        boton.addEventListener('click', () => {
+            agregarAlCarrito(boton.value);
+        });
+    }
     
 })
+
+/*----------------------------*/
+
+/*ACA VAMOS A HACER QUE LOS PRODUCTOS SELECCIONADOS VALLAN AL CARRITO */
+
+const agregarAlCarrito=(id)=>{
+    PRODUCTOS.forEach(producto => {
+        if(producto.id==id){
+            /*CREANDO LOS DIVS DEL ITEM CARRITO*/
+            const listaCarrito = document.getElementById('listaCarrito');
+            let divCarritoProducto = document.createElement('div');
+            divCarritoProducto.className="itemProductoCarrito";
+            let divDescripcion = document.createElement('div');
+            divDescripcion.className="infoProducCarrito"
+            let divTextoDescripcion = document.createElement('div');
+            divTextoDescripcion.className="textoDescripcion"
+            let divInteraccion = document.createElement('div');
+            divInteraccion.className="divInteraccion"
+
+            /*CREANDO LA IMAGEN DEL PRODUCTO SELECCIONADO*/
+            let imgProdCarrito = document.createElement('img');
+            imgProdCarrito.src=producto.urlImagen;
+            imgProdCarrito.loading="lazy";
+            imgProdCarrito.className="imgProdCarrito"
+
+            /*CREANDO LA DESCRIPCION DEL PRODUCTO SELECCIONADO*/
+            let descProdCarrito = document.createElement('p')
+            descProdCarrito.textContent=producto.descripcion;
+            descProdCarrito.className="descripcionCarrito";
+
+            /*CREANDO EL PRECIO DEL PRODUCTO SELECCIONADO*/
+            let precioProdCarrito = document.createElement('p');
+            precioProdCarrito.textContent=`${producto.precio}$`
+            precioProdCarrito.className="precioCarrito"
+            
+            /*CREANDO LOS ICONOS*/
+            let iconoMas = document.createElement('i')
+            iconoMas.className="bi bi-plus icono";
+            let contador = document.createElement('p')
+            contador.textContent=1;
+            contador.className="contador";
+            let iconoMenos = document.createElement('i')
+            iconoMenos.className="bi bi-dash icono";
+            let iconoBasura = document.createElement('i')
+            iconoBasura.className="bi bi-trash3-fill icono basura";
+
+            /*AGREANDO EL CONTENIDO A LOS DIVS*/
+            divTextoDescripcion.appendChild(descProdCarrito);
+            divTextoDescripcion.appendChild(precioProdCarrito)
+            divDescripcion.appendChild(imgProdCarrito);
+            divDescripcion.appendChild(divTextoDescripcion);
+            divCarritoProducto.appendChild(divDescripcion);
+            divInteraccion.appendChild(iconoMas);
+            divInteraccion.appendChild(contador);
+            divInteraccion.appendChild(iconoMenos);
+            divInteraccion.appendChild(iconoBasura);
+            divCarritoProducto.appendChild(divInteraccion);
+            listaCarrito.appendChild(divCarritoProducto);
+        }
+    });
+
+}
