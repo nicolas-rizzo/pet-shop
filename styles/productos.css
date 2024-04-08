@@ -169,6 +169,18 @@
 .basura{
     color: red;
 }
+.footerModal{
+    width: 100%;
+    justify-content: space-between !important;
+}
+.precioTotal{
+    font-size: 1.1rem;
+}
+.numeroTotal{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--ColorPrincipal);
+}
 
 .iframeFooter{
     width: 100%;

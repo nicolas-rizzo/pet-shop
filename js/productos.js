@@ -256,7 +256,8 @@ const agregarAlCarrito=(id)=>{
             /*CREANDO EL PRECIO DEL PRODUCTO SELECCIONADO*/
             let precioProdCarrito = document.createElement('p');
             precioProdCarrito.textContent=`${producto.precio}$`
-            precioProdCarrito.className="precioCarrito"
+            precioProdCarrito.className="precioCarrito";
+            precioProdCarrito.value=producto.id;
             
             /*CREANDO LOS ICONOS*/
             let iconoMas = document.createElement('i')
@@ -304,6 +305,7 @@ const agregarAlCarrito=(id)=>{
                 if(botonS.value===contador.value){
                     let valor = parseInt(contador.textContent) + 1;
                     contador.textContent=valor;
+                    calcularElTotal();
                 }
             }
         });
@@ -316,11 +318,13 @@ const agregarAlCarrito=(id)=>{
                     let valor = parseInt(contador.textContent) -1;
                     if(valor>0){
                         contador.textContent=valor;
+                        calcularElTotal();
                     }
                 }
             }
         });
     }
+
 }
 
 /*-------------------------*/
@@ -332,8 +336,40 @@ const botonEliminarCarrito =document.getElementById('botonEliminarTodo');
 botonEliminarCarrito.addEventListener('click',()=>{
     const listaCarrito = document.getElementById('listaCarrito');
     listaCarrito.innerHTML = "";
+    calcularElTotal();
 })
 
 /*------------------------*/
 
+/*ABRIR MODAL*/
+
+function abrirModal() {
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+    myModal.show();
+
+    calcularElTotal();
+}
+
+const calcularElTotal=()=>{
+    /*MOSTRAR EL PRECIO TOTAL*/
+    const preciosCarritos = document.getElementsByClassName('precioCarrito');
+    const contadores = document.getElementsByClassName('contador');
+    const PrecioTotalCarrito = document.getElementById('precioTotalCarrito');
+    let precioTotal = 0;
+
+    for (let i = 0; i < preciosCarritos.length; i++){
+        const precio = preciosCarritos[i];
+        const valor = parseInt(precio.textContent.split('$').join(''));
+        
+        for (let z = 0; z < contadores.length; z++){
+            const cont = contadores[z];
+
+            if(precio.value===cont.value){
+                precioTotal+=valor*parseInt(cont.textContent)
+            }
+        }
+    }
+
+    PrecioTotalCarrito.textContent=`${precioTotal}$`;
+}
 
