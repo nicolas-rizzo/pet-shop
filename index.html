@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Shope - Home</title>
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/productos.css">
     <link rel="shortcut icon" href="./images/perroicono.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
-    <iframe class="IframeHeader" src="./pages/header.html" frameborder="0" id="frameHeader"></iframe>
+    <iframe class="IframeHeader" src="./pages/header.html" id="frameHeader" title="header"></iframe>
 
     <div class="container-fluid">
         <!-- Modal -->
@@ -17,7 +22,8 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">CARRITO <i class="bi bi-cart-check"></i></h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">CARRITO <i class="bi bi-cart-check"></i>
+                        </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -30,9 +36,101 @@
             </div>
         </div>
 
+        <main>
+            <section class="banner">
+                <div>
+                    <h1> 
+                        <span>LOS MEJORES</span><br>
+                        <span>PRODUCTOS PARA</span><br>
+                        <span>TUS MASCOTAS</span>
+                    </h1>
+                    
+                    <button class="button">COMPRAR AHORA</button>
+                </div>
+            </section>
+
+            <!--section class="four-columns">
+                <div class="column">
+                    <h1>
+                        <span>!Bienvenido!</span>
+                    </h1>
+                    <span>A la casa de tus mascotas, donde se diverten y alimentan</span>
+                </div>
+                <div class="column">
+                    <div class="contenido">
+                        <i class="bi bi-headset"></i>
+                        <br>
+                        <span class="negrita"></span>
+                        <br>
+                        <span>Horario: 8 a.m. - 11 p.m.</span>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="contenido">
+                        <img src="./images/rocket-takeoff.png" alt="rocket">
+                        <br>
+                        <span class="negrita">Entrega al dia siguiente</span>
+                        <br>
+                        <span>Solo pedidos en Argentina</span>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="contenido">
+                        <img src="./images/piggy-bank.png" alt="piggy">
+                        <br>
+                        <span class="negrita">Las mejores ofertas</span>
+                        <br>
+                        <span>Aprovechalas ahora</span>
+                    </div>
+                </div>
+            </section-->
+            
+            <section class="avisos">
+                <div class="avisosContenido">
+                    <div class="avisosTitulo">
+                        <p>!Bienvenido!</p>
+                    </div>
+                    <p>A la casa de tus mascotas, donde<br> se diverten y alimentan</p>
+                </div>
+                <div class="avisosContenido">
+                    <div class="avisosTitulo">
+                        <i class="bi bi-headset"></i>
+                        <p>Mejor soporte en línea</p>
+                    </div>
+                    <p>Horario: 8 a.m. - 11 p.m.</p>
+                </div>
+                <div class="avisosContenido">
+                    <div class="avisosTitulo">
+                        <i class="bi bi-rocket-takeoff"></i>
+                        <p>Entrega al dia siguiente</p>
+                    </div>
+                    <p>Solo pedidos en Argentina</p>
+                </div>
+                <div class="avisosContenido">
+                    <div class="avisosTitulo">
+                        <i class="bi bi-piggy-bank"></i>
+                        <p>Las mejores ofertas</p>
+                    </div>
+                    <p>Aprovechalas ahora</p>
+                </div>
+            </section>
+
+            <main class="mainProductos">
+                <h1 class="titulo">Productos Populares</h1>
+                <div class="contenedorProductos">
+                    <div class="listaProductos" id="listaProductos">
+                        
+                    </div>
+                </div>
+
+                <div class="contenido">
+                    <button class="button">Ver mas productos</button>
+                </div>
+            </main>
+        </main>
     </div>
 
-    <iframe class="iframeFooter" src="./pages/footer.html" frameborder="0"></iframe>
+    <iframe class="iframeFooter" src="./pages/footer.html" title="footer"></iframe>
 
     <script>
         function abrirModal() {
@@ -41,9 +139,16 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
 
 </body>
+
 </html>

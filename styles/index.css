@@ -14,3 +14,74 @@
     background-color: #222222;
     overflow: hidden;
 }
+
+.banner {
+    top: 236px;
+    padding-top: 30px;
+    height: 628px;
+    border: 1px;
+    background: url('../images/image.png') center; 
+    background-size: cover;
+}
+
+@media (min-width: 1440) {
+    .banner {
+        max-width: 1440px;
+    }
+}
+
+.button {
+    background-color: #F58500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  
+.button:hover {
+    background-color: #D46A00; /* Cambia el color al pasar el cursor */
+}
+
+.texto-contenido {
+    width: 535px;
+    height: 211px;
+    top: 368px;
+    left: 114px
+}
+  
+.four-columns {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.column {
+    width: calc(25% - 20px); /* Calculamos el ancho de cada columna */
+    margin-right: 20px; /* Espacio entre las columnas */
+    padding: 20px;
+    box-sizing: border-box; /* Para incluir el padding en el ancho total */
+}
+
+.column:last-child {
+    margin-right: 0; /* Eliminamos el margen de la última columna para evitar desbordamiento */
+}
+
+.negrita {
+    font-weight: bold;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centramos el contenido verticalmente */
+    text-align: center; /* Centramos el texto horizontalmente */
+}
+
+.contenido img {
+    max-width: 100%; /* Para asegurarnos de que la imagen no sea más ancha que el contenedor */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+    width: 54px;
+    height: 56px;
+}

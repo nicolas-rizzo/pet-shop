@@ -12,3 +12,7 @@ Es una tienda online especializada en productos de alta calidad para mascotas. O
 ## Link De La Pagina
 
 https://jairale25.github.io/Pet-Shop/
+
+## Figma
+
+https://www.figma.com/file/Z8KqFcnwbLTOVMTqAEXlGe/Pet-Shop?type=design&node-id=0-1&mode=design
