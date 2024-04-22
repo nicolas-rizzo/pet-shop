@@ -30,6 +30,11 @@
     }
 }
 
+.banner div {
+    width: 80%;
+    padding-left: 114px;
+}
+
 .button {
     background-color: #F58500;
     color: white;
@@ -77,6 +82,8 @@
     flex-direction: column;
     align-items: center; /* Centramos el contenido verticalmente */
     text-align: center; /* Centramos el texto horizontalmente */
+    padding: 30px;
+    margin: 30px;
 }
 
 .contenido img {
@@ -84,4 +91,8 @@
     margin-bottom: 10px; /* Espacio entre la imagen y el texto */
     width: 54px;
     height: 56px;
+}
+
+.contenedorProductos {
+    justify-content: center !important;    
 }
