@@ -262,14 +262,14 @@ const agregarAlCarrito=(id)=>{
             /*CREANDO LOS ICONOS*/
             let iconoMas = document.createElement('i')
             iconoMas.className="bi bi-plus icono suma";
-            iconoMas.value=producto.id;
+            iconoMas.id=producto.id;
             let contador = document.createElement('p')
             contador.textContent=1;
             contador.className="contador";
-            contador.value=producto.id;
+            contador.id=producto.id;
             let iconoMenos = document.createElement('i')
             iconoMenos.className="bi bi-dash icono menos";
-            iconoMenos.value=producto.id;
+            iconoMenos.id=producto.id;
             let iconoBasura = document.createElement('i')
             iconoBasura.className="bi bi-trash3-fill icono basura";
 
@@ -297,12 +297,13 @@ const agregarAlCarrito=(id)=>{
     for (let i = 0; i < botonesSuma.length; i++) {
         const botonS = botonesSuma[i];
         const botonR= botonesResta[i];
+        
 
         /*SUMA*/
         botonS.addEventListener('click', () => {
-            for (let i = 0; i < contadores.length; i++){
-                const contador = contadores[i];
-                if(botonS.value===contador.value){
+            for (let x = 0; x < contadores.length; x++){
+                const contador = contadores[x];
+                if(botonS.id===contador.id){
                     let valor = parseInt(contador.textContent) + 1;
                     contador.textContent=valor;
                     calcularElTotal();
@@ -312,14 +313,14 @@ const agregarAlCarrito=(id)=>{
 
         /*RESTA*/
         botonR.addEventListener('click', () => {
-            for (let i = 0; i < contadores.length; i++){
-                const contador = contadores[i];
-                if(botonR.value===contador.value){
+            for (let j = 0; j < contadores.length; j++){
+                const contador = contadores[j];
+                if(botonR.id===contador.id){
                     let valor = parseInt(contador.textContent) -1;
                     if(valor>0){
                         contador.textContent=valor;
                         calcularElTotal();
-                    }
+                    } 
                 }
             }
         });
