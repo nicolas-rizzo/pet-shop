@@ -41,4 +41,7 @@ img{
     font-size: 1.2rem;
 }
 
-
+/* Cambia el color a naranja cuando el mouse está sobre el icono */
+.redes-icon:hover {
+    color: var(--ColorPrincipal); 
+}
