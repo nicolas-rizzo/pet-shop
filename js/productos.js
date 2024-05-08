@@ -1,4 +1,5 @@
 import {PRODUCTOS} from "./constants/listaProductos.js"
+import ProductosCarrito from "./class/productosCarrito.js"
 
 const ANIMALES = ["Perro","Gato","Aves","Conejo","Tortuga"];
 
@@ -122,68 +123,47 @@ listaAnimales.addEventListener('change',()=>{
 
 /*ACA VAMOS A HACER QUE LOS PRODUCTOS SELECCIONADOS VALLAN AL CARRITO */
 
+const prodCarrito = [];
+
+const verificarRepetido=(id)=>{
+    const arrayProductos = JSON.parse(localStorage.getItem('productosCarrito'));
+    let siHay=false;
+    arrayProductos.forEach(objProducto =>{
+        if(objProducto.id==id){
+            console.log(objProducto.id)
+            siHay=true;
+        }
+    })
+    if(siHay){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 const agregarAlCarrito=(id)=>{
     PRODUCTOS.forEach(producto => {
         if(producto.id==id){
-            /*CREANDO LOS DIVS DEL ITEM CARRITO*/
-            const listaCarrito = document.getElementById('listaCarrito');
-            let divCarritoProducto = document.createElement('div');
-            divCarritoProducto.className="itemProductoCarrito";
-            let divDescripcion = document.createElement('div');
-            divDescripcion.className="infoProducCarrito"
-            let divTextoDescripcion = document.createElement('div');
-            divTextoDescripcion.className="textoDescripcion"
-            let divInteraccion = document.createElement('div');
-            divInteraccion.className="divInteraccion"
-
-            /*CREANDO LA IMAGEN DEL PRODUCTO SELECCIONADO*/
-            let imgProdCarrito = document.createElement('img');
-            imgProdCarrito.src=producto.urlImagen;
-            imgProdCarrito.loading="lazy";
-            imgProdCarrito.className="imgProdCarrito"
-
-            /*CREANDO LA DESCRIPCION DEL PRODUCTO SELECCIONADO*/
-            let descProdCarrito = document.createElement('p')
-            descProdCarrito.textContent=producto.descripcion;
-            descProdCarrito.className="descripcionCarrito";
-
-            /*CREANDO EL PRECIO DEL PRODUCTO SELECCIONADO*/
-            let precioProdCarrito = document.createElement('p');
-            precioProdCarrito.textContent=`${producto.precio}$`
-            precioProdCarrito.className="precioCarrito";
-            precioProdCarrito.value=producto.id;
-            
-            /*CREANDO LOS ICONOS*/
-            let iconoMas = document.createElement('i')
-            iconoMas.className="bi bi-plus icono suma";
-            iconoMas.id=producto.id;
-            let contador = document.createElement('p')
-            contador.textContent=1;
-            contador.className="contador";
-            contador.id=producto.id;
-            let iconoMenos = document.createElement('i')
-            iconoMenos.className="bi bi-dash icono menos";
-            iconoMenos.id=producto.id;
-            let iconoBasura = document.createElement('i')
-            iconoBasura.className="bi bi-trash3-fill icono basura";
-
-            /*AGREANDO EL CONTENIDO A LOS DIVS*/
-            divTextoDescripcion.appendChild(descProdCarrito);
-            divTextoDescripcion.appendChild(precioProdCarrito)
-            divDescripcion.appendChild(imgProdCarrito);
-            divDescripcion.appendChild(divTextoDescripcion);
-            divCarritoProducto.appendChild(divDescripcion);
-            divInteraccion.appendChild(iconoMas);
-            divInteraccion.appendChild(contador);
-            divInteraccion.appendChild(iconoMenos);
-            divInteraccion.appendChild(iconoBasura);
-            divCarritoProducto.appendChild(divInteraccion);
-            listaCarrito.appendChild(divCarritoProducto);
+                const productosCarritoJSON = localStorage.getItem('productosCarrito');
+                if (productosCarritoJSON == null) {
+                    const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
+                    prodCarrito.push(prodElegido);
+                    localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
+                }
+                else{
+                    if(verificarRepetido(producto.id)==false){
+                        const arrayProductos = JSON.parse(localStorage.getItem('productosCarrito'));
+                        const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
+                        arrayProductos.push(prodElegido);
+                        localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
+                    }
+                }
         }
     });
 
     /*INCREMENTAR O DECREMENTAR EL CONTADOR DEL CARRITO*/
-
+/*
     const botonesSuma = document.getElementsByClassName('suma');
     const botonesResta = document.getElementsByClassName('menos');
     const contadores = document.getElementsByClassName('contador');
@@ -191,10 +171,10 @@ const agregarAlCarrito=(id)=>{
     for (let i = 0; i < botonesSuma.length; i++) {
         const botonS = botonesSuma[i];
         const botonR= botonesResta[i];
-        
+        */
 
         /*SUMA*/
-        botonS.addEventListener('click', () => {
+       /* botonS.addEventListener('click', () => {
             for (let x = 0; x < contadores.length; x++){
                 const contador = contadores[x];
                 if(botonS.id===contador.id){
@@ -203,10 +183,10 @@ const agregarAlCarrito=(id)=>{
                     calcularElTotal();
                 }
             }
-        });
+        });*/
 
         /*RESTA*/
-        botonR.addEventListener('click', () => {
+        /*botonR.addEventListener('click', () => {
             for (let j = 0; j < contadores.length; j++){
                 const contador = contadores[j];
                 if(botonR.id===contador.id){
@@ -218,10 +198,9 @@ const agregarAlCarrito=(id)=>{
                 }
             }
         });
-    }
+    }*/
 
 }
-
 /*-------------------------*/
 
 /*ELIMINAR TODOS LOS PRODUCTOS DEL CARRITO*/
@@ -237,7 +216,6 @@ botonEliminarCarrito.addEventListener('click',()=>{
 /*------------------------*/
 
 /*ABRIR MODAL*/
-
 function abrirModal() {
     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
     myModal.show();
