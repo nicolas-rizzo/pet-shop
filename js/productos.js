@@ -125,8 +125,14 @@ listaAnimales.addEventListener('change',()=>{
 
 const prodCarrito = [];
 
-const verificarRepetido=(id)=>{
+/*RECUPERO EL ARRAY DE OBJETOS GUARDADO EN LOCAL*/
+const recuperarProductosCarrito =()=>{
     const arrayProductos = JSON.parse(localStorage.getItem('productosCarrito'));
+    return arrayProductos;
+}
+/*VERIFICO QUE EL PRODUCTO ELEGIDO NO ESTE REPETIDO*/
+const verificarRepetido=(id)=>{
+    const arrayProductos = recuperarProductosCarrito();
     let siHay=false;
     arrayProductos.forEach(objProducto =>{
         if(objProducto.id==id){
@@ -134,14 +140,9 @@ const verificarRepetido=(id)=>{
             siHay=true;
         }
     })
-    if(siHay){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return siHay ? true : false;
 }
-
+/*GUARDO EN LOCAL LOS PRODUCTOS ELEGIDOS*/
 const agregarAlCarrito=(id)=>{
     PRODUCTOS.forEach(producto => {
         if(producto.id==id){
@@ -153,7 +154,7 @@ const agregarAlCarrito=(id)=>{
                 }
                 else{
                     if(verificarRepetido(producto.id)==false){
-                        const arrayProductos = JSON.parse(localStorage.getItem('productosCarrito'));
+                        const arrayProductos = recuperarProductosCarrito();
                         const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
                         arrayProductos.push(prodElegido);
                         localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
@@ -203,6 +204,66 @@ const agregarAlCarrito=(id)=>{
 }
 /*-------------------------*/
 
+const mostrarProductosCarrito=()=>{
+    const prodEnElCarrito = recuperarProductosCarrito();
+    prodEnElCarrito.forEach(objCarrito =>{
+        /*CREANDO LOS DIVS DEL ITEM CARRITO*/
+        const listaCarrito = document.getElementById('listaCarrito');
+        let divCarritoProducto = document.createElement('div');
+        divCarritoProducto.className="itemProductoCarrito";
+        let divDescripcion = document.createElement('div');
+        divDescripcion.className="infoProducCarrito"
+        let divTextoDescripcion = document.createElement('div');
+        divTextoDescripcion.className="textoDescripcion"
+        let divInteraccion = document.createElement('div');
+        divInteraccion.className="divInteraccion"
+
+        /*CREANDO LA IMAGEN DEL PRODUCTO SELECCIONADO*/
+        let imgProdCarrito = document.createElement('img');
+        imgProdCarrito.src=objCarrito.urlImagen;
+        imgProdCarrito.loading="lazy";
+        imgProdCarrito.className="imgProdCarrito"
+
+        /*CREANDO LA DESCRIPCION DEL PRODUCTO SELECCIONADO*/
+        let descProdCarrito = document.createElement('p')
+        descProdCarrito.textContent=objCarrito.descripcion;
+        descProdCarrito.className="descripcionCarrito";
+
+        /*CREANDO EL PRECIO DEL PRODUCTO SELECCIONADO*/
+        let precioProdCarrito = document.createElement('p');
+        precioProdCarrito.textContent=`${objCarrito.precio}$`
+        precioProdCarrito.className="precioCarrito";
+        precioProdCarrito.value=objCarrito.id;
+        
+        /*CREANDO LOS ICONOS*/
+        let iconoMas = document.createElement('i')
+        iconoMas.className="bi bi-plus icono suma";
+        iconoMas.id=objCarrito.id;
+        let contador = document.createElement('p')
+        contador.textContent=1;
+        contador.className="contador";
+        contador.id=objCarrito.id;
+        let iconoMenos = document.createElement('i')
+        iconoMenos.className="bi bi-dash icono menos";
+        iconoMenos.id=objCarrito.id;
+        let iconoBasura = document.createElement('i')
+        iconoBasura.className="bi bi-trash3-fill icono basura";
+
+        /*AGREANDO EL CONTENIDO A LOS DIVS*/
+        divTextoDescripcion.appendChild(descProdCarrito);
+        divTextoDescripcion.appendChild(precioProdCarrito)
+        divDescripcion.appendChild(imgProdCarrito);
+        divDescripcion.appendChild(divTextoDescripcion);
+        divCarritoProducto.appendChild(divDescripcion);
+        divInteraccion.appendChild(iconoMas);
+        divInteraccion.appendChild(contador);
+        divInteraccion.appendChild(iconoMenos);
+        divInteraccion.appendChild(iconoBasura);
+        divCarritoProducto.appendChild(divInteraccion);
+        listaCarrito.appendChild(divCarritoProducto);
+    })
+}
+
 /*ELIMINAR TODOS LOS PRODUCTOS DEL CARRITO*/
 
 const botonEliminarCarrito =document.getElementById('botonEliminarTodo');
@@ -219,7 +280,7 @@ botonEliminarCarrito.addEventListener('click',()=>{
 function abrirModal() {
     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
     myModal.show();
-
+    mostrarProductosCarrito();
     calcularElTotal();
 }
 
