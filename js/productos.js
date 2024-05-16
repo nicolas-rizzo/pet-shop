@@ -116,14 +116,22 @@ listaAnimales.addEventListener('change',()=>{
             listaProductos.appendChild(divProducto)
         }
     })
-    
+    const botones = document.getElementsByClassName('botonCarrito');
+
+    // Itera sobre cada botón y agrega el evento
+    for (let i = 0; i < botones.length; i++) {
+        const boton = botones[i];
+        boton.addEventListener('click', () => {
+            agregarAlCarrito(boton.value);
+        });
+    }
 })
 
 /*----------------------------*/
 
 /*ACA VAMOS A HACER QUE LOS PRODUCTOS SELECCIONADOS VALLAN AL CARRITO */
 
-const prodCarrito = [];
+let prodCarrito = [];
 
 /*RECUPERO EL ARRAY DE OBJETOS GUARDADO EN LOCAL*/
 const recuperarProductosCarrito =()=>{
@@ -148,9 +156,9 @@ const agregarAlCarrito=(id)=>{
         if(producto.id==id){
                 const productosCarritoJSON = localStorage.getItem('productosCarrito');
                 if (productosCarritoJSON == null) {
-                    const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
-                    prodCarrito.push(prodElegido);
-                    localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
+                        const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
+                        prodCarrito.push(prodElegido);
+                        localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
                 }
                 else{
                     if(verificarRepetido(producto.id)==false){
@@ -163,49 +171,16 @@ const agregarAlCarrito=(id)=>{
         }
     });
 
-    /*INCREMENTAR O DECREMENTAR EL CONTADOR DEL CARRITO*/
-/*
-    const botonesSuma = document.getElementsByClassName('suma');
-    const botonesResta = document.getElementsByClassName('menos');
-    const contadores = document.getElementsByClassName('contador');
-
-    for (let i = 0; i < botonesSuma.length; i++) {
-        const botonS = botonesSuma[i];
-        const botonR= botonesResta[i];
-        */
-
-        /*SUMA*/
-       /* botonS.addEventListener('click', () => {
-            for (let x = 0; x < contadores.length; x++){
-                const contador = contadores[x];
-                if(botonS.id===contador.id){
-                    let valor = parseInt(contador.textContent) + 1;
-                    contador.textContent=valor;
-                    calcularElTotal();
-                }
-            }
-        });*/
-
-        /*RESTA*/
-        /*botonR.addEventListener('click', () => {
-            for (let j = 0; j < contadores.length; j++){
-                const contador = contadores[j];
-                if(botonR.id===contador.id){
-                    let valor = parseInt(contador.textContent) -1;
-                    if(valor>0){
-                        contador.textContent=valor;
-                        calcularElTotal();
-                    } 
-                }
-            }
-        });
-    }*/
-
 }
 /*-------------------------*/
 
 const mostrarProductosCarrito=()=>{
     const prodEnElCarrito = recuperarProductosCarrito();
+    if(prodEnElCarrito==null){
+        const listaCarrito = document.getElementById('listaCarrito');
+        listaCarrito.innerHTML="";
+        return;
+    }
     prodEnElCarrito.forEach(objCarrito =>{
         /*CREANDO LOS DIVS DEL ITEM CARRITO*/
         const listaCarrito = document.getElementById('listaCarrito');
@@ -233,7 +208,7 @@ const mostrarProductosCarrito=()=>{
         let precioProdCarrito = document.createElement('p');
         precioProdCarrito.textContent=`${objCarrito.precio}$`
         precioProdCarrito.className="precioCarrito";
-        precioProdCarrito.value=objCarrito.id;
+        precioProdCarrito.id=objCarrito.id;
         
         /*CREANDO LOS ICONOS*/
         let iconoMas = document.createElement('i')
@@ -248,6 +223,7 @@ const mostrarProductosCarrito=()=>{
         iconoMenos.id=objCarrito.id;
         let iconoBasura = document.createElement('i')
         iconoBasura.className="bi bi-trash3-fill icono basura";
+        iconoBasura.id=objCarrito.id;
 
         /*AGREANDO EL CONTENIDO A LOS DIVS*/
         divTextoDescripcion.appendChild(descProdCarrito);
@@ -262,22 +238,67 @@ const mostrarProductosCarrito=()=>{
         divCarritoProducto.appendChild(divInteraccion);
         listaCarrito.appendChild(divCarritoProducto);
     })
+
+    
+    /*INCREMENTAR O DECREMENTAR EL CONTADOR DEL CARRITO*/
+
+    const botonesSuma = document.getElementsByClassName('suma');
+    const botonesResta = document.getElementsByClassName('menos');
+    const contadores = document.getElementsByClassName('contador');
+
+    for (let i = 0; i < botonesSuma.length; i++) {
+        const botonS = botonesSuma[i];
+        const botonR= botonesResta[i];
+
+        /*SUMA*/
+        botonS.addEventListener('click', () => {
+            for (let x = 0; x < contadores.length; x++){
+                const contador = contadores[x];
+                if(botonS.id===contador.id){
+                    let valor = parseInt(contador.textContent) + 1;
+                    contador.textContent=valor;
+                    calcularElTotal();
+                }
+            }
+        });
+
+        /*RESTA*/
+        botonR.addEventListener('click', () => {
+            for (let j = 0; j < contadores.length; j++){
+                const contador = contadores[j];
+                if(botonR.id===contador.id){
+                    let valor = parseInt(contador.textContent) -1;
+                    if(valor>0){
+                        contador.textContent=valor;
+                        calcularElTotal();
+                    } 
+                }
+            }
+        });
+    }
 }
+
 
 /*ELIMINAR TODOS LOS PRODUCTOS DEL CARRITO*/
 
 const botonEliminarCarrito =document.getElementById('botonEliminarTodo');
 
 botonEliminarCarrito.addEventListener('click',()=>{
-    const listaCarrito = document.getElementById('listaCarrito');
-    listaCarrito.innerHTML = "";
+    localStorage.clear();
+    prodCarrito=[];
+    mostrarProductosCarrito();
     calcularElTotal();
 })
 
 /*------------------------*/
+const iconoModal = document.getElementById("btnModal")
+iconoModal.addEventListener('click',abrirModal)
+
 
 /*ABRIR MODAL*/
 function abrirModal() {
+    const listaCarrito = document.getElementById('listaCarrito');
+    listaCarrito.innerHTML="";
     var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
     myModal.show();
     mostrarProductosCarrito();
@@ -290,17 +311,13 @@ const calcularElTotal=()=>{
     const contadores = document.getElementsByClassName('contador');
     const PrecioTotalCarrito = document.getElementById('precioTotalCarrito');
     let precioTotal = 0;
-
+    
     for (let i = 0; i < preciosCarritos.length; i++){
         const precio = preciosCarritos[i];
         const valor = parseInt(precio.textContent.split('$').join(''));
-        
-        for (let z = 0; z < contadores.length; z++){
-            const cont = contadores[z];
-
-            if(precio.value===cont.value){
-                precioTotal+=valor*parseInt(cont.textContent)
-            }
+        const cont = contadores[i];
+        if(precio.id===cont.id){
+            precioTotal+=valor*parseInt(cont.textContent)
         }
     }
 

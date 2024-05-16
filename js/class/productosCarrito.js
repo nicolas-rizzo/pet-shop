@@ -5,7 +5,6 @@ class ProductosCarrito{
         this.urlImagen=url;
         this.descripcion=descripcion;
         this.precio=precio;
-        this.cantComprada=0;
     }
     
 }
