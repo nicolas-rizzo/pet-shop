@@ -1,0 +1,32 @@
+@import url(./base.css);
+
+.content-info{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-info{
+    color: var(--ColorPrincipal);
+    font-weight: bold;
+    font-size: 2.6rem;
+    margin-top: 1.8rem;
+}
+.info{
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items:center;
+    margin: 2rem 0;
+}
+.imgLocal{
+    width: 40%;
+    border-radius: 10px;
+}
+
+.infoNuestra{
+    font-size: 1.1rem;
+}
