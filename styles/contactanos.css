@@ -1,0 +1,45 @@
+
+.contact-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form .checkbox-group,
+.contact-form .radio-group {
+    margin-bottom: 10px;
+}
+
+.contact-form .checkbox-group input,
+.contact-form .radio-group input {
+    margin-right: 5px;
+}
+
+.contact-form .image-group input {
+    padding: 0;
+}
