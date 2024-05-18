@@ -96,3 +96,23 @@
 .contenedorProductos {
     justify-content: center !important;    
 }
+
+.visita{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.titulo-visita{
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.mapa{
+    border-radius: 10px;
+}

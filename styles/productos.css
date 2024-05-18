@@ -11,7 +11,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 .avisosContenido p{
     font-size: 1.1rem;
@@ -38,7 +38,7 @@
 .mainProductos{
     width: 80%;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 .mainProductos .titulo{
     text-align: center;
