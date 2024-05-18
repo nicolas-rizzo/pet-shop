@@ -26,6 +26,7 @@ img{
 .contenedorRedes p{
     color: white;
     font-size: 1rem;
+    text-align: center;
 }
 .iconosRedes{
     display: flex;
@@ -44,4 +45,46 @@ img{
 /* Cambia el color a naranja cuando el mouse está sobre el icono */
 .redes-icon:hover {
     color: var(--ColorPrincipal); 
+}
+
+@media(max-width:1024px){
+    img{
+        width: 15%;
+        margin: 1rem 0;
+    }
+    .contenedorRedes{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        width: 100%;
+        gap: 1.4rem;
+    }
+    .iconosRedes{
+        gap: 2rem;
+    }
+    .iconosRedes a{
+        padding: 0.6rem 0.8rem;
+    }
+    .iconosRedes i{
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width:480px){
+    img{
+        width: 30%;
+        margin: 1rem 0;
+    }
+    .contenedorRedes{
+        gap: 1.4rem;
+    }
+    .iconosRedes{
+        gap: 1rem;
+    }
+    .iconosRedes a{
+        padding: 0.3rem 0.5rem;
+    }
+    .iconosRedes i{
+        font-size: 1.3rem;
+    }
 }
