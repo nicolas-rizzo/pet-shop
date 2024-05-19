@@ -18,3 +18,10 @@ function validateForm() {
 
     return true;
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const myButton = document.getElementById('myButton');
+    myButton.addEventListener('click', () => {
+        window.location.href = 'https://www.ejemplo.com';
+    });
+});
