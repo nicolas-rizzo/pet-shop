@@ -62,3 +62,11 @@ function obtenerNumerosAleatorios(cantidad, min, max) {
 }
 
 cargarProductos();
+
+document.getElementById('shopNow').addEventListener('click', () => {
+    location.href = './pages/productos.html';
+});
+
+document.getElementById('viewMore').addEventListener('click', () => {
+    location.href = './pages/productos.html';
+});
