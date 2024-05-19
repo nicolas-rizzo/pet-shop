@@ -190,6 +190,44 @@
     overflow: hidden;
 }
 
+@media(max-width:1024px){
+    .avisos{
+        width: 90%;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    .mainProductos{
+        width: 90%;
+    }
+    .contenedorProductos{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .filtros{
+        width: 50%;
+        margin-top: 2rem;
+    }
+    .listaProductos{
+        width: 100%;
+    }
+    .contenedorProducto{
+        flex-basis: calc(50% - 20px);
+    }
+    .descripcionProducto{
+        font-size: 1.3rem;
+    }
+    .precioProducto{
+        font-size: 1.3rem;
+    }
+    .botonCarrito{
+        font-size: 1.3rem;
+    }
+}
+
 @media(max-width:480px){
     .avisos{
         flex-direction: column;
