@@ -16,23 +16,24 @@
 }
 
 .banner {
-    top: 236px;
-    padding-top: 30px;
-    height: 628px;
-    border: 1px;
     background: url('../images/image.png') center; 
     background-size: cover;
-}
-
-@media (min-width: 1440) {
-    .banner {
-        max-width: 1440px;
-    }
+    background-position: center;
+    height: 80vh;
 }
 
 .banner div {
     width: 80%;
-    padding-left: 114px;
+    margin: 0 auto;
+    height: 80vh;
+    display:flex ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.banner div h1{
+    font-weight: bold;
+    line-height: 3rem;
 }
 
 .button {
@@ -41,7 +42,8 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
 }
   
@@ -115,4 +117,15 @@
 
 .mapa{
     border-radius: 10px;
+    width: 100%;
+}
+
+@media(max-width:480px){
+    .banner div {
+        width: 90%;
+        align-items: center;
+    }
+    .banner div h1{
+        text-align: center;
+    }
 }
