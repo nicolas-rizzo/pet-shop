@@ -37,8 +37,8 @@
             <div class="contact-form">
                 <h2>Contáctanos</h2>
 
-                <form id="contactForm" onsubmit="return validateForm()">
-                    <label for="name">Nombre:</label>
+                <form id="contactForm" onsubmit="return validateForm()" enctype="multipart/form-data">
+                    <label for="name">Nombres y Apellido:</label>
                     <input type="text" id="name" name="name" required>
                     
                     <label for="email">Correo Electrónico:</label>
@@ -58,7 +58,7 @@
                     </select>
                     
                     <div class="checkbox-group">
-                        <label for="subscribe">Deseo recibir noticias y actualizaciones</label>
+                        <label for="subscribe">Deseo recibir noticias y actualizaciones?</label>
                         <input type="checkbox" id="subscribe" name="subscribe">
                     </div>
                     
@@ -71,11 +71,11 @@
                     </div>
                     
                     <div class="image-group">
-                        <label for="profilePicture">Foto de Perfil:</label>
-                        <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+                        <label for="adjunto">Adjuntar imagen:</label>
+                        <input type="file" id="adjunto" name="adjunto" accept="image/*">
                     </div>
                     
-                    <button class="button" type="submit">Enviar</button>
+                    <button class="button" id="enviar" type="submit">Enviar</button>
                 </form>
             </div>
         </section>

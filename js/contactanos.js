@@ -20,8 +20,10 @@ function validateForm() {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const myButton = document.getElementById('myButton');
-    myButton.addEventListener('click', () => {
-        window.location.href = 'https://www.ejemplo.com';
+    const myButton = document.getElementById('enviar');
+    myButton.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        alert('Mensaje enviado con exito!');
+        window.location.href = 'contactanos.html';
     });
 });
