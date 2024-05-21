@@ -31,7 +31,7 @@
     justify-content: center;
     align-items: start;
 }
-.banner div h1{
+.banner div h2{
     font-weight: bold;
     line-height: 3rem;
 }
