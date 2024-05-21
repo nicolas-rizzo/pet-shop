@@ -1,4 +1,5 @@
 import {PRODUCTOS} from "./constants/listaProductos.js"
+import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
 
 /*-----------------------------------------------------*/
 
@@ -70,3 +71,25 @@ document.getElementById('shopNow').addEventListener('click', () => {
 document.getElementById('viewMore').addEventListener('click', () => {
     location.href = './pages/productos.html';
 });
+
+const iconoModal = document.getElementById("ModalIndex")
+iconoModal.addEventListener('click',abrirModal)
+
+
+/*ABRIR MODAL*/
+function abrirModal() {
+    const listaCarrito = document.getElementById('listaCarrito');
+    listaCarrito.innerHTML="";
+    var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {});
+    myModal.show();
+    mostrarProductosCarrito();
+    calcularElTotal()
+}
+
+const botonEliminarCarrito =document.getElementById('botonEliminarTodo');
+
+botonEliminarCarrito.addEventListener('click',()=>{
+    localStorage.clear();
+    mostrarProductosCarrito();
+    calcularElTotal();
+})

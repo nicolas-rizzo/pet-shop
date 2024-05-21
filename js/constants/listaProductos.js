@@ -23,7 +23,7 @@ export const PRODUCTOS = [
     {
         id:4,
         animal:"Conejo",
-        urlImagen:"https://sc7.scart.cl:8080/images/11acc07c-ecc2-4770-af10-a32f44569780.png",
+        urlImagen:"https://acdn.mitiendanube.com/stores/001/791/617/products/15-342d7c0d398dc3023717063887056578-640-0.png",
         descripcion:"SCART Producto Alimento para conejos | Champion Mini Pets",
         precio:9000
     },
@@ -58,7 +58,7 @@ export const PRODUCTOS = [
     {
         id:9,
         animal:"Conejo",
-        urlImagen:"https://sc7.scart.cl:8080/images/11acc07c-ecc2-4770-af10-a32f44569780.png",
+        urlImagen:"https://acdn.mitiendanube.com/stores/001/791/617/products/15-342d7c0d398dc3023717063887056578-640-0.png",
         descripcion:"SCART Producto Alimento para conejos | Champion Mini Pets",
         precio:9000
     },
@@ -93,7 +93,7 @@ export const PRODUCTOS = [
     {
         id:14,
         animal:"Conejo",
-        urlImagen:"https://sc7.scart.cl:8080/images/11acc07c-ecc2-4770-af10-a32f44569780.png",
+        urlImagen:"https://acdn.mitiendanube.com/stores/001/791/617/products/15-342d7c0d398dc3023717063887056578-640-0.png",
         descripcion:"SCART Producto Alimento para conejos | Champion Mini Pets",
         precio:9000
     },
