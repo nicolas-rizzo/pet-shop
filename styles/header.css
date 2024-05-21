@@ -56,6 +56,9 @@ a{
 .listaResponsive{
     display: none;
 }
+.iconoLogin{
+    color: black;
+}
 @media(max-width:1024px){
     .links{
         width: 100%;

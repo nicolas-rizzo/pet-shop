@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shope - Login</title>
+    <link rel="shortcut icon" href="./../images/perroicono.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./../styles/header.css">
+    <link rel="stylesheet" href="./../styles/footer.css">
+    <link rel="stylesheet" href="./../styles/login.css">
+</head>
+<body>
+    <header class="header">
+        <div class="contentLogo">
+            <img src="./../images/logoTextoNegro.png" alt="" class="imgLogo">
+            <div class="contentIcons">
+                <a href="./login.html"><i class="bi bi-person iconoLogin"></i></a>
+            </div>
+            <i class="bi bi-list listaResponsive" id="listaResponsive"></i>
+        </div>
+        <div class="lineaNegra"></div>
+        <nav class="links" id="links">
+            <a href="./../index.html" target="_top">Inicio</a>
+            <a href="./productos.html" target="_top">Productos</a>
+            <a href="./sobreNosotros.html" target="_top">Sobre Nosotros</a>
+            <a href="./contactanos.html" target="_top">Contactanos</a>
+        </nav>
+    </header>
+
+    <main class="main-login">
+        <h1>INICIAR SESSION</h1>
+        <form action="" class="form-login"> 
+            <label for="">Correo Electronico</label>
+            <input type="email">
+            <label for="">Contraseña</label>
+            <div class="password">
+                <input type="password" id="password">
+                <i class="bi bi-eye-fill" id="iconoContraseña"></i>
+            </div>
+            <input type="submit" value="iniciar" class="btnIniciar">
+        </form>
+        <a href="" class="linkRegis">No tienes cuenta aun? Crea una aqui</a>
+    </main>
+
+    <footer class="footer">
+        <div class="contenedorFooter">
+            <img src="./../images/logoTextoBlanco.png" alt="">
+            <div class="contenedorRedes">
+                <p>© 2024 - Software de comercio de Productos para mascotas™</p>
+                <div class="iconosRedes">
+                    <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-facebook redes-icon"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-twitter-x redes-icon"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-youtube redes-icon"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-pinterest redes-icon"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="#"><i class="bi bi-instagram redes-icon"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./../js/login.js"></script>
+</body>
+</html>
