@@ -37,26 +37,31 @@
             <div class="contact-form">
                 <h2>Contáctanos</h2>
 
-                <form id="contactForm" onsubmit="return validateForm()" enctype="multipart/form-data">
+                <form id="contactForm" enctype="multipart/form-data">
                     <label for="name">Nombres y Apellido:</label>
-                    <input type="text" id="name" name="name" required>
-                    
+                    <input type="text" id="name" name="name">
+                    <span class="error-message" id="error-nombre">Debe completar sus nombres y apellido.</span><br><br>
+
                     <label for="email">Correo Electrónico:</label>
-                    <input type="email" id="email" name="email" required>
-                    
+                    <input type="email" id="email" name="email">
+                    <span class="error-message" id="error-email">Debe completar su correo electronico.</span><br><br>
+
                     <label for="phone">Teléfono:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                    
+                    <input type="tel" id="phone" name="phone">
+                    <span class="error-message" id="error-phone">Debe completar su telefono.</span><br><br>
+
                     <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" required></textarea>
-                    
+                    <textarea id="message" name="message"></textarea>
+                    <span class="error-message" id="error-mensaje">Debe completar el mensaje.</span><br><br>
+
                     <label for="contactMethod">Método de Contacto Preferido:</label>
-                    <select id="contactMethod" name="contactMethod" required>
+                    <select id="contactMethod" name="contactMethod">
                         <option value="">Seleccione una opción</option>
                         <option value="email">Correo Electrónico</option>
                         <option value="phone">Teléfono</option>
                     </select>
-                    
+                    <span class="error-message" id="error-contact">Debe seleccionar una opción de contacto.</span><br><br>
+
                     <div class="checkbox-group">
                         <label for="subscribe">Deseo recibir noticias y actualizaciones?</label>
                         <input type="checkbox" id="subscribe" name="subscribe">
@@ -65,15 +70,16 @@
                     <div class="radio-group">
                         <label class="tituloGenero">Género:</label>
                         <div class="generos">
-                            <input type="radio" id="male" name="gender" value="male" required>
+                            <input type="radio" id="male" name="gender" value="male">
                             <label for="male">Masculino</label>
                         </div>
                         <div class="generos">
-                            <input type="radio" id="female" name="gender" value="female" required>
+                            <input type="radio" id="female" name="gender" value="female">
                             <label for="female">Femenino</label>
                         </div>
                     </div>
-                    
+                    <span class="error-message" id="error-genero">Debe seleccion su genero.</span><br><br>
+
                     <div class="image-group">
                         <label for="adjunto">Adjuntar imagen:</label>
                         <input type="file" id="adjunto" name="adjunto" accept="image/*">

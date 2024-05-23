@@ -120,3 +120,12 @@ main {
 .button{
     width: 100%;
 }
+
+.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
