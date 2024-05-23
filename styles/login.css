@@ -7,10 +7,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2.5rem 0;
+    padding-top: 3rem;
 }
 .main-login h1{
     padding-bottom: 1rem;
+   
 }
 
 .form-login{
@@ -72,19 +73,13 @@
 .linkRegis:hover{
     color: var(--ColorPrincipal);
 }
-.bodyLogin{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-}
+
 
 @media(max-width:1024px){
-    .bodyLogin{
-        overflow-y: hidden;
-    }
+    
     .main-login{
-        padding: 1rem 0;
+        padding-top: 3rem 0;
+        
     }
     .main-login h1{
         font-size: 2.3rem;
@@ -109,9 +104,7 @@
 }
 
 @media(max-width:480px){
-    .bodyLogin{
-        height: 100vh;
-    }
+   
     .main-login h1{
         font-size: 1.6rem;
         text-align: center;
