@@ -72,19 +72,19 @@ img{
 
 @media (max-width:480px){
     img{
-        width: 30%;
+        width: 25%;
         margin: 1rem 0;
     }
     .contenedorRedes{
-        gap: 1.4rem;
+        gap: 1.3rem;
     }
     .iconosRedes{
         gap: 1rem;
     }
     .iconosRedes a{
-        padding: 0.3rem 0.5rem;
+        padding: 0.2rem 0.4rem;
     }
     .iconosRedes i{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }

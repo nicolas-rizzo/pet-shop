@@ -30,3 +30,47 @@
 .infoNuestra{
     font-size: 1.1rem;
 }
+
+@media(max-width:1024px){
+    .content-info{
+        padding: 1rem 0;
+    }
+    .titulo-info{
+        font-size: 2.7rem;
+    }
+    .info{
+        flex-direction: column;
+        gap: 1.5rem;
+        margin: 1rem 0;
+    }
+    .imgLocal{
+        width: 60%;
+    }
+    
+    .infoNuestra{
+        font-size: 1.6rem;
+        text-align: center;
+    }
+}
+
+@media (max-width:480px){
+    .content-info{
+        padding: 0rem 0;
+    }
+    .titulo-info{
+        font-size: 2.5rem;
+        text-align: center;
+    }
+    .info{
+        gap: 1.5rem;
+        margin: 1rem 0;
+    }
+    .imgLocal{
+        width: 100%;
+    }
+    
+    .infoNuestra{
+        font-size: 1.3rem;
+        text-align: center;
+    }
+}

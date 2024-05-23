@@ -78,3 +78,59 @@
     justify-content: space-between;
     height: 100vh;
 }
+
+@media(max-width:1024px){
+    .bodyLogin{
+        overflow-y: hidden;
+    }
+    .main-login{
+        padding: 1rem 0;
+    }
+    .main-login h1{
+        font-size: 2.3rem;
+    }
+    .form-login label{
+        font-size: 1.3rem;
+    }
+    .form-login input{
+        padding: 0.5rem 0.7rem;
+        font-size: 1.3rem;
+        width: 50%;
+    }
+    .password i{
+        font-size: 1.9rem;
+    }
+    .form-login .btnIniciar{
+        font-size: 1.4rem;
+    }
+    .linkRegis{
+        font-size: 1.3rem;
+    }
+}
+
+@media(max-width:480px){
+    .bodyLogin{
+        height: 100vh;
+    }
+    .main-login h1{
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    .form-login label{
+        font-size: 1.1rem;
+    }
+    .form-login input{
+        padding: 0.3rem 0.5rem;
+        font-size: 1.1rem;
+        width: 80%;
+    }
+    .password i{
+        font-size: 1.5rem;
+    }
+    .form-login .btnIniciar{
+        font-size: 1.1rem;
+    }
+    .linkRegis{
+        font-size: 1rem;
+    }
+}
