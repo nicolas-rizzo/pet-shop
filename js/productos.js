@@ -1,7 +1,6 @@
-import {PRODUCTOS} from "./constants/listaProductos.js"
+import { PRODUCTOS } from "./constants/listaProductos.js"
 import ProductosCarrito from "./class/productosCarrito.js"
 import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
-
 
 const ANIMALES = ["Perro","Gato","Aves","Conejo","Tortuga"];
 
@@ -11,7 +10,7 @@ const cargarListaAnimales =()=>{
     let animal = document.createElement('option');
     animal.textContent="Todos los animales";
     animal.value="todos";
-        listaAnimales.appendChild(animal);
+    listaAnimales.appendChild(animal);
     ANIMALES.forEach(anim => {
         let animal = document.createElement('option');
         animal.textContent = anim;
@@ -43,7 +42,7 @@ const cargarProductos =()=>{
         descripcionProducto.textContent=producto.descripcion;
         descripcionProducto.className="descripcionProducto"
 
-        precioProductos.textContent=`${producto.precio}$`
+        precioProductos.textContent=`$${producto.precio}`
         precioProductos.className="precioProducto"
 
         botonCarrito.textContent="Agregar al carrito";
@@ -67,7 +66,6 @@ const cargarProductos =()=>{
         });
     }
 }
-
 
 cargarProductos();
 
@@ -104,7 +102,7 @@ listaAnimales.addEventListener('change',()=>{
             descripcionProducto.textContent=producto.descripcion;
             descripcionProducto.className="descripcionProducto"
 
-            precioProductos.textContent=`${producto.precio}$`
+            precioProductos.textContent=`$${producto.precio}`
             precioProductos.className="precioProducto"
 
             botonCarrito.textContent="Agregar al carrito";

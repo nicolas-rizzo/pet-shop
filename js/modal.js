@@ -6,11 +6,18 @@ export const recuperarProductosCarrito =()=>{
 
 export const mostrarProductosCarrito=()=>{
     const prodEnElCarrito = recuperarProductosCarrito();
-    if(prodEnElCarrito==null){
+
+    if (document.getElementById('botonEliminarTodo')) 
+        document.getElementById('botonEliminarTodo').disabled = false;
+
+    if(prodEnElCarrito==null || prodEnElCarrito.length === 0) {
         const listaCarrito = document.getElementById('listaCarrito');
-        listaCarrito.innerHTML="";
+        listaCarrito.innerHTML="<b>Su carrito esta vacío</b>";
+        if (document.getElementById('botonEliminarTodo')) 
+            document.getElementById('botonEliminarTodo').disabled = true;
         return;
     }
+
     prodEnElCarrito.forEach(objCarrito =>{
         /*CREANDO LOS DIVS DEL ITEM CARRITO*/
         const listaCarrito = document.getElementById('listaCarrito');
@@ -36,7 +43,7 @@ export const mostrarProductosCarrito=()=>{
 
         /*CREANDO EL PRECIO DEL PRODUCTO SELECCIONADO*/
         let precioProdCarrito = document.createElement('p');
-        precioProdCarrito.textContent=`${objCarrito.precio}$`
+        precioProdCarrito.textContent=`$ ${objCarrito.precio}`
         precioProdCarrito.className="precioCarrito";
         precioProdCarrito.id=objCarrito.id;
         
@@ -68,7 +75,6 @@ export const mostrarProductosCarrito=()=>{
         divCarritoProducto.appendChild(divInteraccion);
         listaCarrito.appendChild(divCarritoProducto);
     })
-
     
     /*INCREMENTAR O DECREMENTAR EL CONTADOR DEL CARRITO*/
 
@@ -93,7 +99,7 @@ export const mostrarProductosCarrito=()=>{
             arrayProd.splice(indice,1);
             localStorage.setItem('productosCarrito',JSON.stringify(arrayProd))
             const listaCarrito = document.getElementById('listaCarrito');
-            listaCarrito.innerHTML="";
+            listaCarrito.innerHTML="<b>Su carrito esta vacío</b>";
             mostrarProductosCarrito()
             calcularElTotal();
         });
@@ -119,13 +125,17 @@ export const mostrarProductosCarrito=()=>{
                     if(valor>0){
                         contador.textContent=valor;
                         calcularElTotal();
-                    } 
+                    } else {
+                        const listaCarrito = document.getElementById('listaCarrito');
+                        listaCarrito.innerHTML="<b>Su carrito esta vacío</b>";
+                        if (document.getElementById('botonEliminarTodo')) 
+                            document.getElementById('botonEliminarTodo').disabled = true;
+                    }
                 }
             }
         });
     }
 }
-
 
 export const calcularElTotal=()=>{
     /*MOSTRAR EL PRECIO TOTAL*/
@@ -143,7 +153,5 @@ export const calcularElTotal=()=>{
         }
     }
 
-    PrecioTotalCarrito.textContent=`${precioTotal}$`;
+    PrecioTotalCarrito.textContent=`$ ${precioTotal}`;
 }
-
-
