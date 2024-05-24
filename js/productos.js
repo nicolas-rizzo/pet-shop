@@ -8,7 +8,7 @@ const ANIMALES = ["Perro","Gato","Aves","Conejo","Tortuga"];
 const cargarListaAnimales =()=>{
     const listaAnimales = document.getElementById('animales');
     let animal = document.createElement('option');
-    animal.textContent="Todos los animales";
+    animal.textContent="Todos";
     animal.value="todos";
     listaAnimales.appendChild(animal);
     ANIMALES.forEach(anim => {
@@ -139,7 +139,7 @@ const verificarRepetido=(id)=>{
     let siHay=false;
     arrayProductos.forEach(objProducto =>{
         if(objProducto.id==id){
-            console.log(objProducto.id)
+            //console.log(objProducto.id)
             siHay=true;
         }
     })
@@ -165,9 +165,7 @@ const agregarAlCarrito=(id)=>{
                 }
         }
     });
-
 }
-
 
 /*-------------------------*/
 
@@ -185,7 +183,6 @@ botonEliminarCarrito.addEventListener('click',()=>{
 /*------------------------*/
 const iconoModal = document.getElementById("btnModal")
 iconoModal.addEventListener('click',abrirModal)
-
 
 /*ABRIR MODAL*/
 function abrirModal() {
