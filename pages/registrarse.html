@@ -19,7 +19,6 @@
             <img src="./../images/logoTextoNegro.png" alt="" class="imgLogo">
             <div class="contentIcons">
                 <a href="./login.html"><i class="bi bi-person iconoLogin"></i></a>
-                <i class="bi bi-cart-check" id="btnModal"></i>
             </div>
             <i class="bi bi-list listaResponsive" id="listaResponsive"></i>
         </div>
@@ -32,8 +31,8 @@
         </nav>
     </header>
 
-    <main>
-        <section>
+    <main class="content-register">
+        <section class="register">
             <div class="contact-form">
                 <h2>Registrarse</h2>
 
@@ -68,32 +67,6 @@
             </div>
         </section>
     </main>
-
-    <div class="container-fluid">
-        <!-- Modal -->
-        <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">CARRITO <i class="bi bi-cart-check"></i></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="listaCarrito">
-                        
-                    </div>
-                    <div class="modal-footer footerModal">
-                        <div>
-                            <p class="precioTotal">Total a pagar : <span id="precioTotalCarrito" class="numeroTotal"></span></p>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-secondary btn-danger" id="botonEliminarTodo">Eliminar Todo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <footer class="footer">
         <div class="contenedorFooter">
