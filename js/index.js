@@ -25,7 +25,7 @@ const cargarProductos =()=>{
             descripcionProducto.textContent=producto.descripcion;
             descripcionProducto.className="descripcionProducto"
 
-            precioProductos.textContent=`${producto.precio}$`
+            precioProductos.textContent=`$${producto.precio}`
             precioProductos.className="precioProducto"
 
             botonCarrito.textContent="Agregar al carrito";

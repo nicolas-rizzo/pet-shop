@@ -8,4 +8,29 @@
 
 :root{
     --ColorPrincipal:#F58500;
+    --ColorSecundario: #D46A00;
+}
+
+.button {
+    background-color: var(--ColorPrincipal);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--ColorSecundario);
+}
+
+.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    display: none;
 }
