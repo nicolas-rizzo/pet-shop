@@ -44,10 +44,11 @@ a{
     color: black;
     font-weight:bold;
     transition: all 0.4s ease;
+    &:hover{
+        color:var(--ColorPrincipal);
+    }
 }
-.links a:hover{
-    color:var(--ColorPrincipal);
-}
+
 .lineaNegra{
     background-color: rgba(98, 98, 98, 0.4);
     height: 1px;
