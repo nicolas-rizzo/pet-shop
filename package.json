@@ -1,11 +1,10 @@
 {
-  "type":"module",
+  "type": "module",
   "name": "pet-shop",
   "version": "1.0.0",
   "description": "Es una tienda online especializada en productos de alta calidad para mascotas. Ofrecemos una amplia gama de alimentos, accesorios y productos de cuidado para perros, gatos, aves, conejos y tortugas. Nuestra misión es proporcionar a los amantes de las mascotas todo lo que necesitan para el bienestar y la felicidad de sus compañeros peludos, emplumados o escamosos.",
   "main": "./servers/mainServer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./servers/mainServer.js"
   },
   "keywords": [],
@@ -15,6 +14,9 @@
     "nodemon": "^3.1.3"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "env-var": "^7.5.0",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0"
   }
 }
