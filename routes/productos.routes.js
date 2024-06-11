@@ -10,6 +10,8 @@ export default class ProductosRoutes extends Routes{
     }
 
     getRoutes=()=>{
-        this.router.get("/",this.productosC.getTodosLosProductos)
+        this.router
+            .get("/",this.productosC.getTodosLosProductos)
+            .get("/:idAnimal",this.productosC.getProductoPorAnimal)
     }
 }
