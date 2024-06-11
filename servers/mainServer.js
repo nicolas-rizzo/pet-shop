@@ -1,9 +1,10 @@
 import express from 'express'
-import { productosRoutes } from '../routes/productosRoutes.js';
+import ProductosRoutes from '../routes/productos.routes.js';
 
 const app = express();
 const PORT = 8080;
 
-app.use("/productos",productosRoutes);
+const productos = new ProductosRoutes();
+app.use("/productos",productos.router);
 
 app.listen(PORT,()=> console.log(`escuchando en http://localhost:${PORT}`));

@@ -1,5 +1,5 @@
 import { PRODUCTOS } from "./constants/listaProductos.js"
-import ProductosCarrito from "./class/productosCarrito.js"
+import Productos from "./class/ClassProductos.js"
 import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
 
 const ANIMALES = ["Perro","Gato","Aves","Conejo","Tortuga"];
@@ -151,14 +151,14 @@ const agregarAlCarrito=(id)=>{
         if(producto.id==id){
                 const productosCarritoJSON = localStorage.getItem('productosCarrito');
                 if (productosCarritoJSON == null) {
-                        const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
+                        const prodElegido = new Productos(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
                         prodCarrito.push(prodElegido);
                         localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
                 }
                 else{
                     if(verificarRepetido(producto.id)==false){
                         const arrayProductos = recuperarProductosCarrito();
-                        const prodElegido = new ProductosCarrito(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
+                        const prodElegido = new Productos(producto.id,producto.urlImagen,producto.descripcion,producto.precio);
                         arrayProductos.push(prodElegido);
                         localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
                     }
