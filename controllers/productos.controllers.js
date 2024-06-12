@@ -6,7 +6,8 @@ export default class ProductosControllers{
             const [results] = await pool.query("select * from productos;");
             res.status(200).send(results)
         } catch (error) {
-            console.error(error);
+            console.error(error)
+            res.status(404).send("Not Found");
         }
     }
     getProductoPorAnimal= async(req,res)=>{
@@ -19,6 +20,7 @@ export default class ProductosControllers{
                 res.status(404).send("Not Found");
             }
         } catch (error) {
+            console.error(error)
             res.status(404).send("Not Found");
         }
     }
