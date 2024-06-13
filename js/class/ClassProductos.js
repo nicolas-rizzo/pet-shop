@@ -1,11 +1,10 @@
 class Productos{
 
-    constructor(id,url,descripcion,precio,activo=true){
+    constructor(id,url,descripcion,precio){
         this.id=id;
         this.urlImagen=url;
         this.descripcion=descripcion;
         this.precio=precio;
-        this.activo=activo;
     }
     
 }

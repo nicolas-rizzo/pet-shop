@@ -3,10 +3,19 @@ import ProductosRoutes from '../routes/productos.routes.js';
 import { config } from 'dotenv';
 import env from 'env-var'
 import AnimalesRoutes from '../routes/animales.routes.js';
+import cors from 'cors'
 
 const app = express();
 config();
 const PORT = env.get('PORT').required().asPortNumber();
+
+app.use(express.urlencoded({
+    extended:true
+}))
+app.use(express.json({
+    type:"*/*"
+}))
+app.use(cors());
 
 const animales = new AnimalesRoutes();
 app.use("/animales",animales.router)
