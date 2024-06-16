@@ -1,3 +1,5 @@
+import ApiData from "./apiData.js";
+import Productos from "./class/ClassProductos.js";
 
 export const recuperarProductosCarrito =()=>{
     const arrayProductos = JSON.parse(localStorage.getItem('productosCarrito'));
@@ -154,4 +156,41 @@ export const calcularElTotal=()=>{
     }
 
     PrecioTotalCarrito.textContent=`$ ${precioTotal}`;
+}
+
+/*ACA VAMOS A HACER QUE LOS PRODUCTOS SELECCIONADOS VALLAN AL CARRITO */
+
+let prodCarrito = [];
+
+/*VERIFICO QUE EL PRODUCTO ELEGIDO NO ESTE REPETIDO*/
+const verificarRepetido=(id)=>{
+    const arrayProductos = recuperarProductosCarrito();
+    let siHay=false;
+    arrayProductos.forEach(objProducto =>{
+        if(objProducto.id==id){
+            //console.log(objProducto.id)
+            siHay=true;
+        }
+    })
+    return siHay ? true : false;
+}
+/*GUARDO EN LOCAL LOS PRODUCTOS ELEGIDOS*/
+export const agregarAlCarrito=async(id)=>{
+    const PRODUCTOS = await ApiData.getProductoPorId(id);
+    PRODUCTOS.forEach(producto => {
+        const productosCarritoJSON = localStorage.getItem('productosCarrito');
+        if (productosCarritoJSON == null) {
+                const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
+                prodCarrito.push(prodElegido);
+                localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
+        }
+        else{
+            if(verificarRepetido(producto.idProducto_PR)==false){
+                const arrayProductos = recuperarProductosCarrito();
+                const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
+                arrayProductos.push(prodElegido);
+                localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
+            }
+        }
+    });
 }
