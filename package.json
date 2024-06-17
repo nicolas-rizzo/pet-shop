@@ -5,6 +5,7 @@
   "description": "Es una tienda online especializada en productos de alta calidad para mascotas. Ofrecemos una amplia gama de alimentos, accesorios y productos de cuidado para perros, gatos, aves, conejos y tortugas. Nuestra misión es proporcionar a los amantes de las mascotas todo lo que necesitan para el bienestar y la felicidad de sus compañeros peludos, emplumados o escamosos.",
   "main": "./servers/mainServer.js",
   "scripts": {
+    "start": "node ./servers/mainServer.js",
     "dev": "nodemon ./servers/mainServer.js"
   },
   "keywords": [],

@@ -17,3 +17,19 @@ https://jairale25.github.io/Pet-Shop/
 ## Figma
 
 https://www.figma.com/file/Z8KqFcnwbLTOVMTqAEXlGe/Pet-Shop?type=design&node-id=0-1&mode=design
+
+# Backend
+- NodeJS
+- Express
+- MySQL
+
+## .env 
+### Environment variables.
+PORT=
+
+### Database config
+HOST_DB=
+PORT_DB=
+NAME_DB=
+USER_DB=
+PASSWORD_DB=
