@@ -1,4 +1,4 @@
-import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
+import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./carrito.js";
 
 const iconoModal = document.getElementById("btnModal")
 iconoModal.addEventListener('click',abrirModal)

@@ -1,16 +1,10 @@
 import Productos from "./class/ClassProductos.js"
-import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
-
-/* TRAEMOS TODOS LOS ANIMALES DESDE EL BACKEND */
-const getTodosLosAnimales= async ()=>{
-    const res = await fetch("http://localhost:8008/animales");
-    const data = await res.json();
-    return data;
-}
+import { calcularElTotal,mostrarProductosCarrito,agregarAlCarrito } from "./carrito.js";
+import ApiData from "./apiData.js";
 
 /*CARGAMOS AL SELECT TODOS LOS ANIMALES DEL ARRAY*/
 const cargarListaAnimales = async()=>{
-    const ANIMALES = await getTodosLosAnimales();
+    const ANIMALES = await ApiData.getTodosLosAnimales();
     const listaAnimales = document.getElementById('animales');
     let animal = document.createElement('option');
     animal.textContent="Todos";
@@ -28,22 +22,9 @@ cargarListaAnimales();
 
 /*-----------------------------------------------------*/
 
-/* TRAEMOS TODOS LOS PRODUCTOS DESDE EL BACKEND */
-
-const getTodosLosProductos=async()=>{
-    const res = await fetch("http://localhost:8008/productos")
-    const data = await res.json();
-    return data;
-}
-const getProductosPorAnimal=async(idAnimal)=>{
-    const res = await fetch(`http://localhost:8008/productos/${idAnimal}`)
-    const data = await res.json();
-    return data;
-}
-
 /*CARGAMOS TODOS LOS PRODUCTOS DEL OBJETO PRODUCTOS EN LA PAGINA*/
 const cargarProductos = async ()=>{
-    const PRODUCTOS = await getTodosLosProductos();
+    const PRODUCTOS = await ApiData.getTodosLosProductos();
     const listaProductos = document.getElementById('listaProductos');
     PRODUCTOS.forEach(producto => {
         if(producto.activo_PR==1){
@@ -106,9 +87,8 @@ listaAnimales.addEventListener('change',async ()=>{
         return;
     }
 
-    const PRODUCTOS = await getProductosPorAnimal(animalElegido);
+    const PRODUCTOS = await ApiData.getProductosPorAnimal(animalElegido);
     PRODUCTOS.forEach(producto => {
-        if(producto.idProducto_PR==animalElegido){
             if(producto.activo_PR==1){
                 let divProducto = document.createElement('div')
                 let imagenProducto = document.createElement('img');
@@ -138,7 +118,6 @@ listaAnimales.addEventListener('change',async ()=>{
                 divProducto.appendChild(botonCarrito);
                 listaProductos.appendChild(divProducto)
             }
-        }
     })
     const botones = document.getElementsByClassName('botonCarrito');
 
@@ -153,47 +132,7 @@ listaAnimales.addEventListener('change',async ()=>{
 
 /*----------------------------*/
 
-/*ACA VAMOS A HACER QUE LOS PRODUCTOS SELECCIONADOS VALLAN AL CARRITO */
 
-let prodCarrito = [];
-
-/*VERIFICO QUE EL PRODUCTO ELEGIDO NO ESTE REPETIDO*/
-const verificarRepetido=(id)=>{
-    const arrayProductos = recuperarProductosCarrito();
-    let siHay=false;
-    arrayProductos.forEach(objProducto =>{
-        if(objProducto.id==id){
-            //console.log(objProducto.id)
-            siHay=true;
-        }
-    })
-    return siHay ? true : false;
-}
-
-/*GUARDO EN LOCAL LOS PRODUCTOS ELEGIDOS*/
-const agregarAlCarrito=async(id)=>{
-    const PRODUCTOS = await getTodosLosProductos();
-    PRODUCTOS.forEach(producto => {
-        if(producto.idProducto_PR==id){
-                const productosCarritoJSON = localStorage.getItem('productosCarrito');
-                if (productosCarritoJSON == null) {
-                        const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
-                        prodCarrito.push(prodElegido);
-                        localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
-                }
-                else{
-                    if(verificarRepetido(producto.idProducto_PR)==false){
-                        const arrayProductos = recuperarProductosCarrito();
-                        const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
-                        arrayProductos.push(prodElegido);
-                        localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
-                    }
-                }
-        }
-    });
-}
-
-/*-------------------------*/
 
 /*ELIMINAR TODOS LOS PRODUCTOS DEL CARRITO*/
 

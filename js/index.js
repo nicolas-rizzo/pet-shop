@@ -1,15 +1,15 @@
-import {PRODUCTOS} from "./constants/listaProductos.js"
-import { calcularElTotal,recuperarProductosCarrito,mostrarProductosCarrito } from "./modal.js";
+import { calcularElTotal,mostrarProductosCarrito,agregarAlCarrito } from "./carrito.js";
+import ApiData from "./apiData.js";
 
 /*-----------------------------------------------------*/
 
 /*CARGAMOS 3 PROD. RANDOM*/
-const cargarProductos =()=>{
+
+const cargarProductos =async()=>{
     const listaProductos = document.getElementById('listaProductos');
-    const numerosAleatorios = obtenerNumerosAleatorios(3, 1, 15);
+    const PRODUCTOS = await ApiData.getProductosRandom();
     
     PRODUCTOS.forEach(producto => {
-        if(numerosAleatorios.includes(producto.id)){
             let divProducto = document.createElement('div')
             let imagenProducto = document.createElement('img');
             let descripcionProducto = document.createElement('p');
@@ -18,18 +18,18 @@ const cargarProductos =()=>{
 
             divProducto.className="contenedorProducto"
 
-            imagenProducto.src=producto.urlImagen;
+            imagenProducto.src=producto.urlImagen_PR;
             imagenProducto.loading="lazy";
             imagenProducto.className="imagenProducto"
 
-            descripcionProducto.textContent=producto.descripcion;
+            descripcionProducto.textContent=producto.descripcion_PR;
             descripcionProducto.className="descripcionProducto"
 
-            precioProductos.textContent=`$${producto.precio}`
+            precioProductos.textContent=`$${producto.precioUnitario_PR}`
             precioProductos.className="precioProducto"
 
             botonCarrito.textContent="Agregar al carrito";
-            botonCarrito.value=producto.id;
+            botonCarrito.value=producto.idProducto_PR;
             botonCarrito.className="botonCarrito";
 
             divProducto.appendChild(imagenProducto);
@@ -37,7 +37,7 @@ const cargarProductos =()=>{
             divProducto.appendChild(precioProductos);
             divProducto.appendChild(botonCarrito);
             listaProductos.appendChild(divProducto)
-        }
+        
     })
 
     const botones = document.getElementsByClassName('botonCarrito');
@@ -52,15 +52,6 @@ const cargarProductos =()=>{
 }
 
 const listaProductos = document.getElementById('listaProductos');
-
-function obtenerNumerosAleatorios(cantidad, min, max) {
-    const numerosAleatorios = new Set(); // Usamos un Set para evitar duplicados
-    while (numerosAleatorios.size < cantidad) {
-        const numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min;
-        numerosAleatorios.add(numeroAleatorio);
-    }
-    return Array.from(numerosAleatorios); // Convertimos el Set a un array
-}
 
 cargarProductos();
 
