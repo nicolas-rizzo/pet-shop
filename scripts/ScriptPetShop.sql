@@ -25,7 +25,7 @@ create table usuarios(
 	idUsuario_US int auto_increment not null,
 	nombreUsuario_US varchar(40) not null,
 	correoElectronico_US char(40) not null unique,
-	contraseña_US char(30) not null,
+	contraseña_US char(100) not null,
 	domicilio_US varchar(40) not null,
 	codigoPostal varchar(10) not null,
 	primary key (idUsuario_US)

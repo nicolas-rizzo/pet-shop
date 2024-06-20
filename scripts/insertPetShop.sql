@@ -1,9 +1,6 @@
 use petShop;
 
-insert into animales (nombre_AN) values
-	('Perro'),('Gato'),('Aves'),('Conejo'),('Tortuga');	
-	
-select * from animales;
+insert into animales (nombre_AN) values ('Perro'),('Gato'),('Aves'),('Conejo'),('Tortuga');	
 
 insert into productos (idAnimal_PR,urlImagen_PR,descripcion_PR,precioUnitario_PR)
 	values (1,
@@ -19,7 +16,3 @@ insert into productos (idAnimal_PR,urlImagen_PR,descripcion_PR,precioUnitario_PR
 	(5,'https://i5.walmartimages.com.mx/mg/gm/3pp/asr/dcdb2ebe-d6ae-4bcd-8ee3-711ce7799406.aff2f83251b55cd062271dc76495b859.png?odnHeight=612&odnWidth=612&odnBg=FFFFFF',
 	'Alimento para Tortugas Acuaticas Lomas Reptile Sticks Palitos 300 gr',
 	15000);
-	
-
-select * from productos;
-
