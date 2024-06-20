@@ -28,7 +28,28 @@ export default class UsuarioController {
     }
 
     login = async(req, res) => {
-        
+        const { email, password } = req.body
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        try {
+            const [result] = await pool.query('select nombreUsuario_US, correoElectronico_US, domicilio_US, codigoPostal, contraseña_US from usuarios where correoElectronico_US = ?', [email])
+
+            if (result.length === 0) {
+                return res.status(400).json({ message: 'Usuario o contraseña incorrectos' })
+            }
+
+            const user = result[0]
+            const isPasswordValid = await bcrypt.compare(password, user['contraseña_US'])
+
+            if (!isPasswordValid) {
+                return res.status(400).json({ message: 'Usuario o contraseña incorrectos' })
+            }
+
+            res.status(200).send('Usuario logueado!')
+        } catch (error) {
+            console.error(error)
+            res.status(404).send("Error al intentar iniciar sesion, reintente mas tarde.")
+        }
     }
 
     logout = async(req, res) => {
