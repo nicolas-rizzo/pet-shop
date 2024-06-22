@@ -18,10 +18,11 @@ export default class UsuarioController {
             const [result] = await pool.query('insert into usuarios (nombreUsuario_US, correoElectronico_US, contraseña_US, domicilio_US, codigoPostal) values(?, ?, ?, ?, ?);',
                                             [nombres, email, hashedPassword, domicilio, codigoPostal])
 
-            res.status(200).send('Usuario registrado con éxito.')
+            if (result.affectedRows > 0) res.status(200).json({ mensaje: 'Usuario registrado con éxito.'})
+            else res.status(404).json({ mensaje: 'Error al intentar registrar el usuario, reintente mas tarde.'})
         } catch (error) {
             console.error(error)
-            res.status(404).send("Error al intentar registrar el usuario, reintente mas tarde.")
+            res.status(500).json({ mensaje: 'Error al intentar registrar el usuario, reintente mas tarde.'})
         }
     }
 
@@ -31,13 +32,13 @@ export default class UsuarioController {
         try {
             const [result] = await pool.query('select contraseña_US from usuarios where correoElectronico_US = ?', [email])
             if (result.length === 0) {
-                return res.status(400).json({ message: 'Usuario o contraseña incorrectos.' })
+                return res.status(400).json({ mensaje: 'Usuario o contraseña incorrectos.' })
             }
 
             const user = result[0]
             const isPasswordValid = await bcrypt.compare(password, user['contraseña_US'])
             if (!isPasswordValid) {
-                return res.status(400).json({ message: 'Usuario o contraseña incorrectos.' })
+                return res.status(400).json({ mensaje: 'Usuario o contraseña incorrectos.' })
             }
 
             const token = jwt.sign({ email }, process.env.KEY_JWT, { expiresIn: '1h' })
@@ -45,12 +46,35 @@ export default class UsuarioController {
             res.status(200).json({ mensaje: 'Sesion iniciada ' })
         } catch (error) {
             console.error(error)
-            res.status(404).send({ mensaje: "Usuario o contraseña incorrectos." })
+            res.status(500).json({ mensaje: 'Usuario o contraseña incorrectos.' })
         }
     }
 
     logout = async(req, res) => {
         res.clearCookie('token')
-        res.status(200).json({ message: 'Sesion cerrada.' })
+        res.status(200).json({ mensaje: 'Sesion cerrada.' })
+    }
+
+    getUserData = async(req, res) => {
+        const { email } = req.params
+     
+        console.log(email)
+
+        try {
+            const [user] = await pool.query('select nombreUsuario_US, domicilio_US, codigoPostal from usuarios where correoElectronico_US = ?', [email])
+            if (user.length === 0) {
+                return res.status(400).json({ message: 'Error al obtener los datos del usuario.' })
+            }
+
+            res.status(200).json({
+                nombres: u.nombreUsuario_US,
+                domicilio: u.domicilio_US,
+                cp: u.codigoPostal,
+                email: email
+              });
+        } catch (error) {
+            console.error(error)
+            res.status(500).json({ mensaje: 'Error al intentar recuperar los datos del usuario, reintente mas tarde.'})
+        }
     }
 }
