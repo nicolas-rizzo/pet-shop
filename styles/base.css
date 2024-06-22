@@ -33,3 +33,11 @@
     color: red;
     display: none;
 }
+
+
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+  }

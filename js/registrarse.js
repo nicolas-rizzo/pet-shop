@@ -1,7 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
+import ApiData from "./apiData.js";
+
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('formRegistro');
 
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         let esValido = true;
@@ -18,22 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        // Nombres y apellido
         validarCampoTexto(document.getElementById('nombres'), 'error-nombres');
-
-        // Email
         validarCampoTexto(document.getElementById('email'), 'error-email');
-
-        // Password
         validarCampoTexto(document.getElementById('password'), 'error-password');
-
-        // Confirm Password
         validarCampoTexto(document.getElementById('confirmPassword'), 'error-confirmPassword');
-
-        // Domicilio
         validarCampoTexto(document.getElementById('domicilio'), 'error-domicilio');
-
-        // Código Postal
         validarCampoTexto(document.getElementById('codigoPostal'), 'error-codigoPostal');
 
         // Validar que las contraseñas coincidan
@@ -53,8 +44,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (esValido) {
-            alert('Registro enviado con exito!')
-            form.submit();
+            const correoElectronico = document.getElementById('email').value;
+            const nombreUsuario = document.getElementById('nombres').value;
+            const domicilio = document.getElementById('domicilio').value;
+            const codigoPostal = document.getElementById('codigoPostal').value;
+            const pwd = password.value;
+
+            try {
+                const userResponse = await ApiData.registrarUsuario(correoElectronico, pwd, nombreUsuario, domicilio, codigoPostal);
+                mostrarAlerta('Usuario registrado con exito.', 'success')
+                document.getElementById('formRegistro').reset();
+            } catch (error) {
+                mostrarAlerta('Error al registrar usuario. Reintente mas tarde.', 'danger')
+            }
         }
     });
 
