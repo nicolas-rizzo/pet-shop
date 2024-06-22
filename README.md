@@ -26,14 +26,14 @@ https://www.figma.com/file/Z8KqFcnwbLTOVMTqAEXlGe/Pet-Shop?type=design&node-id=0
 
 ## .env 
 ### Environment variables.
--PORT=
+- PORT=
 
 ### Token
--KEY_JWT=
+- KEY_JWT=
 
 ### Database config
--HOST_DB=
--PORT_DB=
--NAME_DB=
--USER_DB=
--PASSWORD_DB=
+- HOST_DB=
+- PORT_DB=
+- NAME_DB=
+- USER_DB=
+- PASSWORD_DB=
