@@ -14,6 +14,6 @@ export default class UsuarioRoutes extends Routes {
             .post("/registrar",this.userController.create)
             .post("/login", this.userController.login)
             .post("/logout", this.userController.logout)
-            .get("/:email", authenticateToken, this.userController.getUserData)
+            .get("/", authenticateToken, this.userController.getUserData)
     }
 }
