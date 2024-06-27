@@ -1,4 +1,3 @@
-import Productos from "./class/ClassProductos.js"
 import { calcularElTotal,mostrarProductosCarrito,agregarAlCarrito } from "./carrito.js";
 import ApiData from "./apiData.js";
 
