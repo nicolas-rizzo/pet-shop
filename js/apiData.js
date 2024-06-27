@@ -58,4 +58,26 @@ export default class ApiData {
             throw new Error(e.message)
         }
     }
+
+    static async loginUsuario(email,password){
+        const userDataLogin ={
+            email,
+            password
+        }
+        try {
+            const res = await fetch(`${this.RUTA_BASE}/usuarios/login`,{
+                method:'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body:JSON.stringify(userDataLogin)
+            });
+            
+            if(!res.ok){
+                throw new Error(`Error al Loguear el usuario. HTTP error! ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            
+        }
+    }
 }

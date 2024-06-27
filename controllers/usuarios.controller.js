@@ -27,7 +27,6 @@ export default class UsuarioController {
 
     login = async (req, res) => {
         const { email, password } = req.body
-
         try {
             const [result] = await pool.query('select nombreUsuario_US, contrasena_US, isAdmin, correoElectronico_US from usuarios where correoElectronico_US = ?', [email])
             if (result.length === 0) {
