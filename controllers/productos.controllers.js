@@ -27,7 +27,7 @@ export default class ProductosControllers{
 
     getProductosRandom=async(req,res)=>{
         try {
-            const [results] = await pool.query("select * from productos group by rand() limit 3;");
+            const [results] = await pool.query("select * from productos order by rand() limit 3;");
             res.status(200).send(results);
         } catch (error) {
             res.status(404).send("Not Found");
