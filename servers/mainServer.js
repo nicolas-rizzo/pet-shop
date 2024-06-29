@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended:true }))
 app.use(express.json({ type:"*/*" }))
 
-//FE y BE
+//url frontend
 const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
 
 app.use(cors({

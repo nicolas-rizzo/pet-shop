@@ -24,7 +24,8 @@ form.addEventListener('submit', async (e)=>{
 
     try {
         const userResponse = await ApiData.loginUsuario(correo,contrasena);
-        if(userResponse){
+
+        if (userResponse) {
             form.reset();
             Swal.fire({
                 position: "top-center",
@@ -36,8 +37,7 @@ form.addEventListener('submit', async (e)=>{
               setTimeout(() => {
                 window.location.href = './../index.html';
               }, 1800);
-        }
-        else{
+        } else {
             form.reset();
             Swal.fire({
                 position: "top-center",
@@ -51,3 +51,6 @@ form.addEventListener('submit', async (e)=>{
         console.log("ERROR AL INICIAR SESSION")
     }
 })
+
+const res = await ApiData.obtenerUsuario();
+console.log(res);

@@ -46,12 +46,13 @@ export default class UsuarioController {
                 email: user.correoElectronico_US,
                 admin: user.isAdmin},
                 process.env.KEY_JWT,
-                { expiresIn: '1h' }
-            )
-
-            //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'strict', maxAge: 1000 * 60 * 60 })
-            res.cookie('token', token, { httpOnly: true, samesite: 'None' })
-            res.status(200).json({ mensaje: 'Sesion iniciada ' })
+                { 
+                    expiresIn: '1h' 
+                })
+            
+            //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
+            res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax'})
+            res.status(200).json({ mensaje: 'Sesion iniciada.' })
         } catch (error) {
             console.error(error)
             res.status(500).json({ mensaje: 'Usuario o contraseña incorrectos.' })
@@ -59,7 +60,7 @@ export default class UsuarioController {
     }
 
     logout = async (req, res) => {
-        res.clearCookie('token')
+        res.clearCookie('access_token')
         res.status(200).json({ mensaje: 'Sesion cerrada.' })
     }
 

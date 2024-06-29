@@ -68,7 +68,8 @@ export default class ApiData {
             const res = await fetch(`${this.RUTA_BASE}/usuarios/login`,{
                 method:'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body:JSON.stringify(userDataLogin)
+                body:JSON.stringify(userDataLogin),
+                credentials: 'include'
             });
             
             if(!res.ok){
@@ -79,5 +80,16 @@ export default class ApiData {
         } catch (error) {
             
         }
+    }
+
+    static async obtenerUsuario() {
+        const res = await fetch(`${this.RUTA_BASE}/usuarios`,{
+            method:'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        });
+
+        const data = await res.json();
+        return data;
     }
 }

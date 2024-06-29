@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 function authenticateToken(req, res, next) {
-  const token = req.cookies.token;
+  const token = req.cookies.access_token;
   if (!token) return res.sendStatus(401);
   
   jwt.verify(token, process.env.KEY_JWT, (err, user) => {
