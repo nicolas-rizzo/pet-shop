@@ -133,3 +133,9 @@ main {
 .button{
     width: 100%;
 }
+
+.subtitulo{
+    display: block;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}

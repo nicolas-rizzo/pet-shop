@@ -6,7 +6,7 @@ import AnimalesRoutes from '../routes/animales.routes.js';
 import cors from 'cors'
 import UsuarioRoutes from '../routes/usuarios.routes.js';
 import cookieParser from 'cookie-parser'
-import authenticateToken from '../middleware/auth.js';
+//import authenticateToken from '../middleware/auth.js';
 
 const app = express();
 config();
