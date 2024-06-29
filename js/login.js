@@ -14,7 +14,7 @@ iconoContraseña.addEventListener('click',()=>{
         inputContraseña.type="password"
     }
 })
-
+const textoErrorLogin = document.getElementById('errorLogin');
 const form = document.getElementById('form-login');
 
 form.addEventListener('submit', async (e)=>{
@@ -39,18 +39,10 @@ form.addEventListener('submit', async (e)=>{
               }, 1800);
         } else {
             form.reset();
-            Swal.fire({
-                position: "top-center",
-                icon: "error",
-                title: "Correo o Usuario Incorrectos",
-                showConfirmButton: false,
-                timer: 1500
-              });
+            textoErrorLogin.textContent='Correo o contraseña incorrectos'
         }
     } catch (error) {
         console.log("ERROR AL INICIAR SESSION")
     }
 })
 
-const res = await ApiData.obtenerUsuario();
-console.log(res);

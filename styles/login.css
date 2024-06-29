@@ -73,6 +73,13 @@
 .linkRegis:hover{
     color: var(--ColorPrincipal);
 }
+.errorLogin{
+    padding-top: 1rem;
+    font-size: 1.1rem;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
 
 @media(max-width:1024px){
     .main-login{
