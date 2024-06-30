@@ -24,6 +24,7 @@ cargarListaAnimales();
 /*CARGAMOS TODOS LOS PRODUCTOS DEL OBJETO PRODUCTOS EN LA PAGINA*/
 const cargarProductos = async ()=>{
     const PRODUCTOS = await ApiData.getTodosLosProductos();
+    const datosUsuario= await ApiData.obtenerUsuario();
     const listaProductos = document.getElementById('listaProductos');
     PRODUCTOS.forEach(producto => {
         if(producto.activo_PR==1){
@@ -48,11 +49,26 @@ const cargarProductos = async ()=>{
             botonCarrito.textContent="Agregar al carrito";
             botonCarrito.value=producto.idProducto_PR;
             botonCarrito.className="botonCarrito";
-    
+            
             divProducto.appendChild(imagenProducto);
             divProducto.appendChild(descripcionProducto);
             divProducto.appendChild(precioProductos);
             divProducto.appendChild(botonCarrito);
+
+            if(datosUsuario.admin==1){
+                let iconoEditar = document.createElement('i');
+                let iconoBorrar = document.createElement('i');
+                let divAdmin = document.createElement('div')
+                divAdmin.className='divAdmin'
+                iconoEditar.className='bi bi-pencil editar';
+                iconoEditar.id=producto.idProducto_PR;
+                iconoBorrar.className='bi bi-trash borrar'
+                iconoBorrar.id=producto.idProducto_PR;
+                divAdmin.appendChild(iconoEditar);
+                divAdmin.appendChild(iconoBorrar);
+                divProducto.appendChild(divAdmin);
+            }
+    
             listaProductos.appendChild(divProducto)
         }
     })
@@ -85,7 +101,7 @@ listaAnimales.addEventListener('change',async ()=>{
         cargarProductos();
         return;
     }
-
+    const datosUsuario= await ApiData.obtenerUsuario();
     const PRODUCTOS = await ApiData.getProductosPorAnimal(animalElegido);
     PRODUCTOS.forEach(producto => {
             if(producto.activo_PR==1){
@@ -115,6 +131,21 @@ listaAnimales.addEventListener('change',async ()=>{
                 divProducto.appendChild(descripcionProducto);
                 divProducto.appendChild(precioProductos);
                 divProducto.appendChild(botonCarrito);
+
+                if(datosUsuario.admin==1){
+                    let iconoEditar = document.createElement('i');
+                    let iconoBorrar = document.createElement('i');
+                    let divAdmin = document.createElement('div')
+                    divAdmin.className='divAdmin'
+                    iconoEditar.className='bi bi-pencil editar';
+                    iconoEditar.id=producto.idProducto_PR;
+                    iconoBorrar.className='bi bi-trash borrar'
+                    iconoBorrar.id=producto.idProducto_PR;
+                    divAdmin.appendChild(iconoEditar);
+                    divAdmin.appendChild(iconoBorrar);
+                    divProducto.appendChild(divAdmin);
+                }
+
                 listaProductos.appendChild(divProducto)
             }
     })
