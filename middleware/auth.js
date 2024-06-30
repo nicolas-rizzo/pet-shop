@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-function authenticateToken(req, res, next) {
+export function authenticateToken(req, res, next) {
   const token = req.cookies.access_token;
   if (!token) return res.sendStatus(401);
   
@@ -11,4 +11,11 @@ function authenticateToken(req, res, next) {
   });
 }
 
-export default authenticateToken;
+export function authenticateAdmin(req, res, next) {
+  if (req.user && req.user.admin === 1) {
+      next();
+  } else {
+      res.sendStatus(403);
+  }
+}
+

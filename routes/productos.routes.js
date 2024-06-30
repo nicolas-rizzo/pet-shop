@@ -1,5 +1,6 @@
 import Routes from "./Routes.js";
 import ProductosControllers from "../controllers/productos.controllers.js";
+import {authenticateAdmin, authenticateToken} from "../middleware/auth.js";
 
 export default class ProductosRoutes extends Routes{
 
@@ -15,5 +16,6 @@ export default class ProductosRoutes extends Routes{
             .get("/random",this.productosC.getProductosRandom)
             .get("/animal/:idAnimal",this.productosC.getProductoPorAnimal)
             .get("/:idProducto",this.productosC.getProductosPorId)
+            .delete("/delete/:idProducto",authenticateToken,authenticateAdmin,this.productosC.EliminarProducto)
     }
 }

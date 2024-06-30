@@ -48,5 +48,20 @@ export default class ProductosControllers{
         }
         
     }
+
+    EliminarProducto=async(req,res)=>{
+        const idProducto = req.params.idProducto;
+        try {
+            const [result] = await pool.query("DELETE FROM productos where idProducto_PR = ?",[idProducto])
+
+            if(result.affectedRows>0){
+                res.status(200).json({ message: "Producto eliminado con éxito." });
+            }else {
+                res.status(404).json({ error: "Producto no encontrado." });
+            }
+        } catch (error) {
+            res.status(500).json({error: "ERROR EN EL SERVIDOR"})
+        }
+    }
     
 }
