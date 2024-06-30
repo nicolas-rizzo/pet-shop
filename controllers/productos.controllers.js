@@ -39,7 +39,7 @@ export default class ProductosControllers{
         try {
             const [results] = await pool.query(`select * from productos where idProducto_PR = ${idProducto};`);
             if(results.length>0){
-                res.status(200).send(results);
+                res.status(200).send(results[0]);
             }else{
                 res.status(404).send("Not Found");
             }

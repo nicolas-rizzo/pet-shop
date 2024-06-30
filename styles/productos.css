@@ -208,6 +208,18 @@
 .divAdmin .borrar:hover{
     background-color: rgb(94, 0, 0);
 }
+.modalBorrarProd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+.modalBorrarProd img{
+    width: 30%;
+}
+.modalBorrarProd p{
+    text-align: center;
+}
 .iframeFooter{
     width: 100%;
     height: 25vh;
@@ -302,6 +314,16 @@
         font-size: 1rem;
     }
     .precioProducto{
+        font-size: 1.1rem;
+    }
+    .modalBorrarProd{
+        display: flex;
+        flex-direction: column;
+    }
+    .modalBorrarProd img{
+        width: 50%;
+    }
+    .modalBorrarProd p{
         font-size: 1.1rem;
     }
 }

@@ -23,8 +23,15 @@ cargarListaAnimales();
 
 /*CARGAMOS TODOS LOS PRODUCTOS DEL OBJETO PRODUCTOS EN LA PAGINA*/
 const cargarProductos = async ()=>{
+    let datosUsuario = null;
+        
+    try {
+        datosUsuario = await ApiData.obtenerUsuario();
+    } catch (err) {
+        console.log("Usuario no logueado");
+    }
+
     const PRODUCTOS = await ApiData.getTodosLosProductos();
-    const datosUsuario= await ApiData.obtenerUsuario();
     const listaProductos = document.getElementById('listaProductos');
     PRODUCTOS.forEach(producto => {
         if(producto.activo_PR==1){
@@ -55,7 +62,7 @@ const cargarProductos = async ()=>{
             divProducto.appendChild(precioProductos);
             divProducto.appendChild(botonCarrito);
 
-            if(datosUsuario.admin==1){
+            if(datosUsuario && datosUsuario.admin==1){
                 let iconoEditar = document.createElement('i');
                 let iconoBorrar = document.createElement('i');
                 let divAdmin = document.createElement('div')
@@ -72,6 +79,15 @@ const cargarProductos = async ()=>{
             listaProductos.appendChild(divProducto)
         }
     })
+
+    const iconosBorrar = document.getElementsByClassName('borrar')
+
+    for(let i=0 ;i<iconosBorrar.length;i++){
+        const iconoB = iconosBorrar[i];
+        iconoB.addEventListener('click',()=>{
+            mostrarModalEliminar(iconoB.id)
+        })
+    }
 
     const botones = document.getElementsByClassName('botonCarrito');
 
@@ -94,6 +110,14 @@ const listaAnimales = document.getElementById('animales');
 const listaProductos = document.getElementById('listaProductos');
 
 listaAnimales.addEventListener('change',async ()=>{
+    let datosUsuario = null;
+        
+    try {
+        datosUsuario = await ApiData.obtenerUsuario();
+    } catch (err) {
+        console.log("Usuario no logueado");
+    }
+
     listaProductos.innerHTML='';
     let animalElegido = listaAnimales.value;
 
@@ -101,7 +125,7 @@ listaAnimales.addEventListener('change',async ()=>{
         cargarProductos();
         return;
     }
-    const datosUsuario= await ApiData.obtenerUsuario();
+
     const PRODUCTOS = await ApiData.getProductosPorAnimal(animalElegido);
     PRODUCTOS.forEach(producto => {
             if(producto.activo_PR==1){
@@ -132,7 +156,7 @@ listaAnimales.addEventListener('change',async ()=>{
                 divProducto.appendChild(precioProductos);
                 divProducto.appendChild(botonCarrito);
 
-                if(datosUsuario.admin==1){
+                if(datosUsuario && datosUsuario.admin==1){
                     let iconoEditar = document.createElement('i');
                     let iconoBorrar = document.createElement('i');
                     let divAdmin = document.createElement('div')
@@ -187,4 +211,24 @@ function abrirModal() {
     myModal.show();
     mostrarProductosCarrito();
     calcularElTotal();
+}
+
+const mostrarModalEliminar=async(id)=>{
+    var myModal = new bootstrap.Modal(document.getElementById('modalBorrar'), {});
+    const modalEliminarBody = document.getElementById('modalEliminarBody');
+    const imgProd = document.createElement('img');
+    const descProd = document.createElement('p');
+    const dataProducto = await ApiData.getProductoPorId(id);
+    
+
+    modalEliminarBody.innerHTML='';
+    
+    imgProd.src=dataProducto.urlImagen_PR;
+    descProd.textContent=dataProducto.descripcion_PR;
+    
+    modalEliminarBody.append(imgProd);
+    modalEliminarBody.append(descProd);
+    
+    console.log(id)
+    myModal.show();
 }

@@ -176,21 +176,20 @@ const verificarRepetido=(id)=>{
 }
 /*GUARDO EN LOCAL LOS PRODUCTOS ELEGIDOS*/
 export const agregarAlCarrito=async(id)=>{
-    const PRODUCTOS = await ApiData.getProductoPorId(id);
-    PRODUCTOS.forEach(producto => {
-        const productosCarritoJSON = localStorage.getItem('productosCarrito');
-        if (productosCarritoJSON == null) {
-                const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
-                prodCarrito.push(prodElegido);
-                localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
+    const producto = await ApiData.getProductoPorId(id);
+    const productosCarritoJSON = localStorage.getItem('productosCarrito');
+    if (productosCarritoJSON == null) {
+            const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
+            prodCarrito.push(prodElegido);
+            localStorage.setItem('productosCarrito',JSON.stringify(prodCarrito))
+    }
+    else{
+        if(verificarRepetido(producto.idProducto_PR)==false){
+            const arrayProductos = recuperarProductosCarrito();
+            const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
+            arrayProductos.push(prodElegido);
+            localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
         }
-        else{
-            if(verificarRepetido(producto.idProducto_PR)==false){
-                const arrayProductos = recuperarProductosCarrito();
-                const prodElegido = new Productos(producto.idProducto_PR,producto.urlImagen_PR,producto.descripcion_PR,producto.precioUnitario_PR);
-                arrayProductos.push(prodElegido);
-                localStorage.setItem('productosCarrito',JSON.stringify(arrayProductos))
-            }
-        }
-    });
+    }
+    
 }
