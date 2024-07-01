@@ -228,6 +228,13 @@
     overflow: hidden;
 }
 
+.divMensajeBorrar{
+    text-align: center;
+    font-weight: bold;
+    color: red;
+    font-size: 1.2rem;
+}
+
 @media(max-width:1024px){
     .avisos{
         width: 90%;

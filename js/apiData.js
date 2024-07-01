@@ -92,4 +92,18 @@ export default class ApiData {
         const data = await res.json();
         return data;
     }
+
+    static async eliminarProducto(id){
+        const res = await fetch(`${this.RUTA_BASE}/productos/delete/${id}`,{
+            method:'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        });
+        if(!res.ok){
+            throw new Error(`Error al Eliminar producto! ${res.status}`);
+        }
+    
+        const data = await res.json()
+        return data;
+    }
 }

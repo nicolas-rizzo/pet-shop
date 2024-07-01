@@ -216,11 +216,13 @@ function abrirModal() {
 const mostrarModalEliminar=async(id)=>{
     var myModal = new bootstrap.Modal(document.getElementById('modalBorrar'), {});
     const modalEliminarBody = document.getElementById('modalEliminarBody');
+    const modalFooterBorrar = document.getElementById('modalFooterBorrar')
+    const botonBorrar = document.createElement('button');
     const imgProd = document.createElement('img');
     const descProd = document.createElement('p');
     const dataProducto = await ApiData.getProductoPorId(id);
     
-
+    modalFooterBorrar.innerHTML='';
     modalEliminarBody.innerHTML='';
     
     imgProd.src=dataProducto.urlImagen_PR;
@@ -228,7 +230,26 @@ const mostrarModalEliminar=async(id)=>{
     
     modalEliminarBody.append(imgProd);
     modalEliminarBody.append(descProd);
-    
-    console.log(id)
+
+    //<button type="button" class="btn btn-danger">Eliminar</button>
+    botonBorrar.type="button";
+    botonBorrar.className="btn btn-danger";
+    botonBorrar.id=id;
+    botonBorrar.textContent="Eliminar"
+
+    botonBorrar.addEventListener('click',async()=>{
+        const divMensajeBorrar = document.getElementById("divMensajeBorrar");
+        const data = await ApiData.eliminarProducto(botonBorrar.id);
+        const mensajeBorrado = document.createElement('p');
+
+        mensajeBorrado.textContent=data.message;
+        divMensajeBorrar.append(mensajeBorrado)
+        setTimeout(() => {
+            window.location.reload();
+        }, 1200);
+    })
+
+    modalFooterBorrar.append(botonBorrar)
+
     myModal.show();
 }
