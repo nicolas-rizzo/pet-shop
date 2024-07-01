@@ -46,3 +46,46 @@ form.addEventListener('submit', async (e)=>{
     }
 })
 
+document.getElementById('logout-btn').addEventListener('click', async () => {
+    try {
+        const response = await ApiData.logoutUsuario()
+
+        Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: response.mensaje,
+            showConfirmButton: false,
+            timer: 1800
+          });
+          setTimeout(() => {
+            window.location.href = './../index.html';
+          }, 1800);
+    } catch (error) {
+        
+    }
+});
+
+const isAuthenticated = async () => {
+    try {
+        const user = await ApiData.obtenerUsuario()
+
+        if (user.email) {
+            document.getElementById('user-name').innerText = user.nombres;
+            document.getElementById('user-email').innerText = user.email;
+            document.getElementById('bienvenido').style.display = 'block';
+            document.getElementById('logout-btn').style.display = 'block';
+            document.getElementById('form-login').style.display = 'none';
+            document.getElementById('registrarse').style.display = 'none';
+            document.getElementById('leyenda').style.display = 'none';
+        } else {
+            document.getElementById('bienvenido').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'none';
+            document.getElementById('form-login').style.display = 'block';
+            document.getElementById('registrarse').style.display = 'block';
+            document.getElementById('leyenda').style.display = 'block';
+        }
+    } catch (error) {
+    }
+}
+
+window.onload = isAuthenticated;
