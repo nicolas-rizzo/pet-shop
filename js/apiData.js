@@ -89,6 +89,8 @@ export default class ApiData {
             credentials: 'include'
         });
 
+        if (!res.ok) return null;
+
         const data = await res.json();
         return data;
     }
@@ -105,5 +107,23 @@ export default class ApiData {
     
         const data = await res.json()
         return data;
+    }
+    
+    static async logoutUsuario(){
+        try {
+            const res = await fetch(`${this.RUTA_BASE}/usuarios/logout`,{
+                method:'POST',
+                credentials: 'include'
+            });
+            
+            if(!res.ok){
+                throw new Error(`Error al cerrar la sesion del usuario. HTTP error! ${res.status}`);
+            }
+
+            const data = await res.json();
+            return data;
+        } catch (error) {
+            
+        }
     }
 }
