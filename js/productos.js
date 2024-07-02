@@ -81,11 +81,21 @@ const cargarProductos = async ()=>{
     })
 
     const iconosBorrar = document.getElementsByClassName('borrar')
-
+    const iconosEditar = document.getElementsByClassName('editar')
+    
+    /*BOTON BORRAR*/
     for(let i=0 ;i<iconosBorrar.length;i++){
         const iconoB = iconosBorrar[i];
         iconoB.addEventListener('click',()=>{
             mostrarModalEliminar(iconoB.id)
+        })
+    }
+
+    /*BOTON EDITAR*/
+    for(let i=0 ;i<iconosEditar.length;i++){
+        const iconoE = iconosEditar[i];
+        iconoE.addEventListener('click',()=>{
+            mostrarModalEditar(iconoE.id)
         })
     }
 
@@ -253,3 +263,42 @@ const mostrarModalEliminar=async(id)=>{
 
     myModal.show();
 }
+
+const mostrarModalEditar=async(id)=>{
+    var myModal = new bootstrap.Modal(document.getElementById('modalEditar'), {});
+    const divIdInput = document.getElementById('divInputId');
+    const inputID = document.createElement('input');
+    const producto = await ApiData.getProductoPorId(id);
+
+    inputID.value=producto.idProducto_PR;
+    inputID.id="inputID";
+    inputID.type="hidden";
+
+    divIdInput.innerHTML='';
+    divIdInput.append(inputID);
+    
+
+    const inputPrecio = document.getElementById('precioEditar');
+    const inputUrlImagen = document.getElementById('urlImagenEditar');
+    const inputDescripcion = document.getElementById('descripcionEditar');
+
+    inputPrecio.value=producto.precioUnitario_PR;
+    inputDescripcion.value=producto.descripcion_PR;
+    inputUrlImagen.value=producto.urlImagen_PR;
+
+    myModal.show();
+}
+
+const form = document.getElementById('formEditarProd');
+
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    
+    const inputPrecio = document.getElementById('precioEditar');
+    const inputUrlImagen = document.getElementById('urlImagenEditar');
+    const inputDescripcion = document.getElementById('descripcionEditar');
+    const inputID = document.getElementById('inputID')
+
+    console.log(inputDescripcion.value);
+    console.log(inputID.value)
+})

@@ -108,6 +108,30 @@
           </div>
         </div>
       </div>
+
+      <!--MODAL EDITAR PRODUCTO-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Producto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalEditarBody">
+                <form action="" class="formEditarProd" id="formEditarProd">
+                    <label for="urlImagenEditar">Url Imagen</label>
+                    <textarea type="text" id="urlImagenEditar" name="urlImagenEditar" class="inputEditar textTareaEditar" rows="4"></textarea>
+                    <label for="">Descripcion</label>
+                    <textarea type="text" id="descripcionEditar" name="descripcionEditar" class="inputEditar textTareaEditar" rows="4"></textarea>
+                    <label for="">Precio</label>
+                    <input type="text" id="precioEditar" name="precioEditar" class="inputEditar">
+                    <div id="divInputId"></div>
+                    <input type="submit" value="Editar" class="btn btn-success">
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
     
     <footer class="footer">
         <div class="contenedorFooter">

@@ -234,6 +234,22 @@
     color: red;
     font-size: 1.2rem;
 }
+.formEditarProd{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.formEditarProd label{
+    font-weight: bold;
+}
+.inputEditar{
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.textTareaEditar{
+    resize: none; 
+}
 
 @media(max-width:1024px){
     .avisos{
