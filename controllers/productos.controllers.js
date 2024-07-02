@@ -64,4 +64,19 @@ export default class ProductosControllers{
         }
     }
     
+    editarProducto=async(req,res)=>{
+        const {idProducto,urlImagen,descripcion,precio} = req.body;
+        try {
+            const [result] = await pool.query("update productos set urlImagen_PR = ?,descripcion_PR =? ,precioUnitario_PR =? where idProducto_PR = ?",[urlImagen,descripcion,precio,idProducto]);
+
+            if(result.affectedRows>0){
+                res.status(200).json({ message: "Producto editado con éxito." });
+            }
+            else{
+                res.status(404).json({ error: "Producto no encontrado." });
+            }
+        } catch (error) {
+            res.status(500).json({error: "ERROR EN EL SERVIDOR"})
+        }
+    }
 }

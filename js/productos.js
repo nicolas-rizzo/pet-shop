@@ -291,7 +291,7 @@ const mostrarModalEditar=async(id)=>{
 
 const form = document.getElementById('formEditarProd');
 
-form.addEventListener('submit',(e)=>{
+form.addEventListener('submit',async(e)=>{
     e.preventDefault();
     
     const inputPrecio = document.getElementById('precioEditar');
@@ -299,6 +299,14 @@ form.addEventListener('submit',(e)=>{
     const inputDescripcion = document.getElementById('descripcionEditar');
     const inputID = document.getElementById('inputID')
 
-    console.log(inputDescripcion.value);
-    console.log(inputID.value)
+    const mensajeEditar = document.getElementById('mensajeEditar');
+
+    const data = await ApiData.editarProducto(inputID.value,inputUrlImagen.value,inputDescripcion.value,inputPrecio.value);
+
+    if(data.message){
+        mensajeEditar.textContent=data.message;
+        setTimeout(() => {
+            window.location.reload();
+        }, 1200);
+    }
 })

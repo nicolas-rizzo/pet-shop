@@ -17,5 +17,6 @@ export default class ProductosRoutes extends Routes{
             .get("/animal/:idAnimal",this.productosC.getProductoPorAnimal)
             .get("/:idProducto",this.productosC.getProductosPorId)
             .delete("/delete/:idProducto",authenticateToken,authenticateAdmin,this.productosC.EliminarProducto)
+            .put("/edit",authenticateToken,authenticateAdmin,this.productosC.editarProducto)
     }
 }

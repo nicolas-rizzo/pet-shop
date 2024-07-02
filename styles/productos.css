@@ -250,6 +250,12 @@
 .textTareaEditar{
     resize: none; 
 }
+.mensajeEditar{
+    text-align: center;
+    font-weight: bold;
+    color: green;
+    margin-top: 1rem;
+}
 
 @media(max-width:1024px){
     .avisos{

@@ -126,4 +126,30 @@ export default class ApiData {
             
         }
     }
+
+    static async editarProducto(idProducto,urlImagen,descripcion,precio){
+        const dataEdit ={
+            idProducto,
+            urlImagen,
+            descripcion,
+            precio
+        }
+        try {
+            const res = await fetch(`${this.RUTA_BASE}/productos/edit`,{
+                method:'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body:JSON.stringify(dataEdit),
+                credentials: 'include'
+            });
+            if(!res.ok){
+                throw new Error(`Error al editar el producto. HTTP error! ${res.status}`);
+            }
+            const data = await res.json();
+            return data;
+
+        } catch (error) {
+            
+        }
+
+    }
 }
