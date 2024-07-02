@@ -52,15 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const userResponse = await ApiData.registrarUsuario(correoElectronico, pwd, nombreUsuario, domicilio, codigoPostal);
-                mostrarAlerta('Usuario registrado con exito.', 'success')
                 document.getElementById('formRegistro').reset();
+
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: 'Usuario registrado con exito.',
+                    showConfirmButton: false,
+                    timer: 1800
+                    });
+
+                setTimeout(() => {
+                    window.location.href = './../index.html';
+                    }, 1800);
             } catch (error) {
                 mostrarAlerta('Error al registrar usuario. Reintente mas tarde.', 'danger')
             }
         }
     });
 
-    // Añadir evento input para las contraseñas para remover el error de coincidencia de contraseñas en tiempo real
     const passwordFields = [document.getElementById('password'), document.getElementById('confirmPassword')];
     passwordFields.forEach(field => {
         field.addEventListener('input', function () {
@@ -69,6 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 password.classList.remove('error');
                 confirmPassword.classList.remove('error');
                 errorPasswordMatch.style.display = 'none';
+            } else {
+                password.classList.add('error');
+                confirmPassword.classList.add('error');
+                errorPasswordMatch.style.display = 'inline';
             }
         });
     });
