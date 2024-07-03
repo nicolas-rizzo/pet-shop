@@ -10,6 +10,8 @@ export default class AnimalesRoutes extends Routes{
     }
 
     getRoutes(){
-        this.router.get("/",this.animalesC.getTodosLosAnimales)
+        this.router
+            .get("/",this.animalesC.getTodosLosAnimales)
+            .post("/add",this.animalesC.create)
     }
 }
