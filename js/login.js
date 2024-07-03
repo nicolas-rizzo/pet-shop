@@ -76,6 +76,11 @@ const isAuthenticated = async () => {
             document.getElementById('form-login').style.display = 'none';
             document.getElementById('registrarse').style.display = 'none';
             document.getElementById('leyenda').style.display = 'none';
+
+            if (user.admin) {
+                const header = document.getElementById('contentIcons')
+                header.innerHTML += '<a href="./animales.html"><i class="bi bi-plus-circle iconoPlus"></i></a>'
+            }
         } else {
             document.getElementById('bienvenido').style.display = 'none';
             document.getElementById('logout-btn').style.display = 'none';

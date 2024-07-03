@@ -12,10 +12,10 @@ export default class AnimalesControllers{
     }
 
     create = async (req, res) => {
-        const { nombre } = req.body
+        const { nombres } = req.body
 
         try {
-            const [result] = await pool.query('insert into animales (nombre_AN) values(?);', [nombre])
+            const [result] = await pool.query('insert into animales (nombre_AN) values(?);', [nombres])
 
             if (result.affectedRows > 0) res.status(200).json({ mensaje: 'Animal agregado con éxito.' })
             else res.status(404).json({ mensaje: 'Error al intentar agregar animal, reintente mas tarde.' })

@@ -57,7 +57,7 @@ a{
 .listaResponsive{
     display: none;
 }
-.iconoLogin{
+.iconoLogin, .iconoPlus{
     color: black;
 }
 @media(max-width:1024px){

@@ -148,8 +148,28 @@ export default class ApiData {
             return data;
 
         } catch (error) {
-            
         }
+    }
 
+    static async registrarAnimal(nombres) {
+        const animal = { nombres };
+        
+        try {
+            const response = await fetch(`${this.RUTA_BASE}/animales/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(animal),
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error al registrar el animal. HTTP error! ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            throw new Error(e.message)
+        }
     }
 }
