@@ -63,6 +63,17 @@ const cargarProductos = async ()=>{
             divProducto.appendChild(botonCarrito);
 
             if(datosUsuario && datosUsuario.admin==1){
+                const botonAgregar = document.createElement('button');
+                const divBotonAgregar = document.getElementById('divBotonAgregar');
+                botonAgregar.textContent="Agregar Producto";
+                botonAgregar.className="btn btn-success";
+                
+                botonAgregar.addEventListener('click',()=>{
+                    mostrarModalAgregar();
+                })
+                divBotonAgregar.innerHTML="";
+                divBotonAgregar.append(botonAgregar)
+
                 let iconoEditar = document.createElement('i');
                 let iconoBorrar = document.createElement('i');
                 let divAdmin = document.createElement('div')
@@ -167,6 +178,16 @@ listaAnimales.addEventListener('change',async ()=>{
                 divProducto.appendChild(botonCarrito);
 
                 if(datosUsuario && datosUsuario.admin==1){
+                const botonAgregar = document.createElement('button');
+                const divBotonAgregar = document.getElementById('divBotonAgregar');
+                botonAgregar.textContent="Agregar Producto";
+                botonAgregar.className="btn btn-success";
+                
+                botonAgregar.addEventListener('click',()=>{
+                    mostrarModalAgregar();
+                })
+                divBotonAgregar.innerHTML="";
+                divBotonAgregar.append(botonAgregar)
                     let iconoEditar = document.createElement('i');
                     let iconoBorrar = document.createElement('i');
                     let divAdmin = document.createElement('div')
@@ -309,4 +330,37 @@ form.addEventListener('submit',async(e)=>{
             window.location.reload();
         }, 1200);
     }
+})
+
+const mostrarModalAgregar=async()=>{
+    var myModal = new bootstrap.Modal(document.getElementById('modalAgregarProducto'), {});
+    const listaAnimales = document.getElementById('ListaAnimales');
+    const dataAnimales = await ApiData.getTodosLosAnimales();
+    dataAnimales.forEach(animal=>{
+        const itemAnimal = document.createElement('option');
+        itemAnimal.value=animal.idAnimal_AN;
+        itemAnimal.textContent=animal.nombre_AN;
+        listaAnimales.append(itemAnimal)
+    })
+    myModal.show();
+}
+
+const formAgregar = document.getElementById('formAgregar');
+
+formAgregar.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const mensajeAgregar = document.getElementById('mensajeAgregar')
+    const animalElegido = document.getElementById('ListaAnimales');
+    const urlImagen = document.getElementById('urlImagenAgregar');
+    const descripcionElegido = document.getElementById('descripcionAgregar');
+    const precioElegido = document.getElementById('precioAgregar');
+
+    const data = await ApiData.agregarProducto(animalElegido.value,urlImagen.value,descripcionElegido.value,precioElegido.value);
+
+    
+    mensajeAgregar.textContent=data.mensaje;
+    setTimeout(() => {
+        window.location.reload();
+    }, 1200);
+    
 })

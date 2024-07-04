@@ -187,21 +187,21 @@
     font-size: 1.3rem;
 }
 .divAdmin .editar{
-    background-color: green;
+    background-color: yellow;
+    color: black;
     border-radius: 100%;
     padding: 0.2rem 0.5rem;
-    color: white;
     cursor: pointer;
     transition: all 0.5s ease;
 }
 .divAdmin .editar:hover{
-    background-color: rgb(1, 85, 1);
+    background-color: rgb(148, 148, 0);
 }
 .divAdmin .borrar{
     background-color: red;
     border-radius: 100%;
     padding: 0.2rem 0.5rem;
-    color: white;
+    color: rgb(212, 212, 212);
     cursor: pointer;
     transition: all 0.5s ease;
 }
@@ -255,6 +255,20 @@
     font-weight: bold;
     color: green;
     margin-top: 1rem;
+}
+.divBotonAgregar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divBotonAgregar button{
+    margin: 1rem 0;
+}
+.listaAnimalesAgregar{
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 @media(max-width:1024px){

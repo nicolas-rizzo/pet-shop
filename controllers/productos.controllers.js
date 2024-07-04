@@ -79,4 +79,16 @@ export default class ProductosControllers{
             res.status(500).json({error: "ERROR EN EL SERVIDOR"})
         }
     }
+
+    agregarProducto=async(req,res)=>{
+        const {idAnimal , urlImagen, descripcion,precio} = req.body
+        try {
+            const [result] = await pool.query("insert into productos (idAnimal_PR,urlImagen_PR,descripcion_PR,precioUnitario_PR) values(?,?,?,?);",[idAnimal,urlImagen,descripcion,precio])
+
+            if (result.affectedRows > 0) res.status(200).json({ mensaje: 'Producto Agregado con exito.' })
+                else res.status(404).json({ error: 'Error al intentar ingresar producto, reintente mas tarde.' })
+        } catch (error) {
+            res.status(500).json({ error: 'Error al intentar Ingresar producto, reintente mas tarde.' })
+        }
+    }
 }

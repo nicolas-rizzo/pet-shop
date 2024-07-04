@@ -56,6 +56,7 @@
     
     <main class="mainProductos">
         <h1 class="titulo">Productos</h1>
+        <div id="divBotonAgregar" class="divBotonAgregar"></div>
         <div class="contenedorProductos">
             <div class="filtros">
                 <p class="titulo">Filtrar Por</p>
@@ -134,6 +135,32 @@
             </div>
         </div>
     </div>
+
+    <!--MODAL DE AGREGAR PRODUCTO-->
+  <div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Cliente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" class="formEditarProd" id="formAgregar">
+            <label for="ListaAnimales">Elegir Animal</label>
+            <select name="ListaAnimales" id="ListaAnimales" class="listaAnimalesAgregar"></select>
+            <label for="urlImagenAgregar">Url Imagen</label>
+            <textarea type="text" id="urlImagenAgregar" name="urlImagenAgregar" class="inputEditar textTareaEditar" rows="4"></textarea>
+            <label for="descripcionAgregar">Descripcion</label>
+            <textarea type="text" id="descripcionAgregar" name="descripcionAgregar" class="inputEditar textTareaEditar" rows="4"></textarea>
+            <label for="precioAgregar">Precio</label>
+            <input type="text" id="precioAgregar" name="precioAgregar" class="inputEditar">
+            <input type="submit" value="Agregar Producto" class="btn btn-success">
+          </form>
+          <p id="mensajeAgregar" class="mensajeEditar"></p>
+        </div>
+      </div>
+    </div>
+  </div>
     
     <footer class="footer">
         <div class="contenedorFooter">

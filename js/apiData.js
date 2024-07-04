@@ -172,4 +172,32 @@ export default class ApiData {
             throw new Error(e.message)
         }
     }
+
+    static async agregarProducto(idAnimal , urlImagen, descripcion,precio){
+        const dataProducto={
+            idAnimal,
+            urlImagen,
+            descripcion,
+            precio
+        }
+        
+        try {
+            const response = await fetch(`${this.RUTA_BASE}/productos/agregar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dataProducto),
+                credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error al registrar el Producto. HTTP error! ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            throw new Error(e.message)
+        }
+    }
+
 }
