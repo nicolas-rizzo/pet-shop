@@ -38,6 +38,10 @@ app.use("/productos",productos.router);
 const usuarios = new UsuarioRoutes();
 app.use("/usuarios", usuarios.router)
 
+app.get("/config", (req, res) => {
+  res.status(200).json(process.env)
+})
+
 app.listen(PORT, () => {
     console.clear()
     console.log(`escuchando en http://localhost:${PORT}`)
