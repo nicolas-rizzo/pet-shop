@@ -1,0 +1,24 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "./servers/mainServer.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "./servers/mainServer.js"
+        }
+    ],
+    "env": {
+        "PORT": "@port",
+        "HOST_DB": "@host-db",
+        "PORT_DB": "@port-db",
+        "NAME_DB": "@name-db",
+        "USER_DB": "@user-db",
+        "PASSWORD_DB": "@password-db",
+        "KEY_JWT": "@key-jwt"
+    }
+}
