@@ -6,11 +6,10 @@ import AnimalesRoutes from '../routes/animales.routes.js';
 import cors from 'cors'
 import UsuarioRoutes from '../routes/usuarios.routes.js';
 import cookieParser from 'cookie-parser'
-//import authenticateToken from '../middleware/auth.js';
 
 const app = express();
 config();
-const PORT = env.get('PORT').required().asPortNumber();
+const PORT = env.get('PORT').required().asPortNumber() || process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended:true }))
