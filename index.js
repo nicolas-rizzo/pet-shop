@@ -39,7 +39,15 @@ const usuarios = new UsuarioRoutes();
 app.use("/usuarios", usuarios.router)
 
 app.get("/config", (req, res) => {
-  res.status(200).json(process.env)
+    const config = {
+      PORT: process.env.PORT,
+      HOST_DB: process.env.HOST_DB,
+      PORT_DB: process.env.PORT_DB,
+      NAME_DB: process.env.NAME_DB,
+      USER_DB: process.env.USER_DB
+  }
+
+  res.status(200).json(config)
 })
 
 app.listen(PORT, () => {
