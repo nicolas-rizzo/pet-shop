@@ -53,6 +53,9 @@ export default class UsuarioController {
             //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
             //res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax', secure: true})
 
+            console.log('Dominio del request:', req.hostname);  // Para el nombre del host
+            console.log('Dominio del request:', req.headers.host);  // O a través de los headers
+          
             res.cookie('access_token', token, {
                 httpOnly: true,
                 sameSite: 'Lax',
