@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended:true }))
 app.use(express.json({ type:"*/*" }))
 
-//url frontend
+//url frontend y backend
 const allowedOrigins = ['https://pet-shop-ten-ruddy.vercel.app', 'https://petshop.alwaysdata.net'];
 
 const corsOptions = {
