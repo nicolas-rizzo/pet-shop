@@ -33,9 +33,12 @@ form.addEventListener('submit', async (e)=>{
                 showConfirmButton: false,
                 timer: 1800
               });
+
+              /*
               setTimeout(() => {
                 window.location.href = './../index.html';
               }, 1800);
+              */
         } else {
             form.reset();
             textoErrorLogin.textContent='Correo o contraseña incorrectos'
