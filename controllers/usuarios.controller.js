@@ -58,7 +58,7 @@ export default class UsuarioController {
                 sameSite: 'Lax',
                 secure: true,
                 maxAge: 1000 * 60 * 60,
-                domain: '.alwaysdata.net'
+                domain: 'petshop.alwaysdata.net'
             })
 
             console.log('Cookie configurada:', res.get('Set-Cookie')); 
