@@ -16,18 +16,21 @@ app.use(express.urlencoded({ extended:true }))
 app.use(express.json({ type:"*/*" }))
 
 //url frontend
-const allowedOrigins = ['https://pet-shop-ten-ruddy.vercel.app'];
+const allowedOrigins = ['https://pet-shop-ten-ruddy.vercel.app', 'https://petshop.alwaysdata.net'];
 
-app.use(cors({
+const corsOptions = {
     origin: function(origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-          callback(null, true);
+            callback(null, true);
         } else {
-          callback(new Error('Not allowed by CORS'));
+            callback(new Error('Not allowed by CORS'));
         }
-      },
-      credentials: true   
-}));
+    },
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 const animales = new AnimalesRoutes();
 app.use("/animales",animales.router)
