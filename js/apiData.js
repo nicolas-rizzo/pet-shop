@@ -1,6 +1,6 @@
 export default class ApiData {
 
-    static RUTA_BASE = "http://localhost:8008";
+    static RUTA_BASE = "https://pet-shop-ten-ruddy.vercel.app";
 
     static async getTodosLosProductos() {
         const res = await fetch(`${this.RUTA_BASE}/productos`)

@@ -51,7 +51,7 @@ export default class UsuarioController {
                 })
             
             //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
-            res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax'})
+            res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax', secure: true})
             res.status(200).json({ mensaje: 'Sesion iniciada.' })
         } catch (error) {
             console.error(error)
