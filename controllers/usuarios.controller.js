@@ -55,16 +55,22 @@ export default class UsuarioController {
 
             console.log('Token generado:', token);
 
+            console.log('Generando cookie');
+
             res.cookie('access_token', token, {
                 httpOnly: true,
-                sameSite: 'Lax',
+                sameSite: 'Strict',
                 secure: true,
-                maxAge: 3600000,
+                maxAge: 1000 * 60 * 60,
                 domain: '.alwaysdata.net'
             });
 
+            console.log('Cookie generada.');
+
             console.log('Cookie configurada:', res.get('Set-Cookie'));
             
+            console.log('REQ=> ', req);
+
             res.status(200).json({ mensaje: 'Sesion iniciada.' })
         } catch (error) {
             console.error(error)
