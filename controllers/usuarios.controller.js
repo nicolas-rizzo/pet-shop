@@ -53,25 +53,19 @@ export default class UsuarioController {
             //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
             //res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax', secure: true})
 
-            console.log('Token generado:', token);
-
-            console.log('Generando cookie');
-
             res.cookie('access_token', token, {
                 httpOnly: true,
-                sameSite: 'Strict',
+                sameSite: 'Lax',
                 secure: true,
                 maxAge: 1000 * 60 * 60,
                 domain: '.alwaysdata.net'
-            });
+            })
 
-            console.log('Cookie generada.');
+            console.log('Cookie configurada:', res.get('Set-Cookie')); 
 
-            console.log('Cookie configurada:', res.get('Set-Cookie'));
-            
-            console.log('REQ=> ', req);
-
-            res.status(200).json({ mensaje: 'Sesion iniciada.' })
+            res.status(200).json({ 
+                mensaje: 'Sesion iniciada.' 
+            })
         } catch (error) {
             console.error(error)
             res.status(500).json({ mensaje: 'Usuario o contraseña incorrectos.' })
