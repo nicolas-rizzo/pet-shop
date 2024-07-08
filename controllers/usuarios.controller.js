@@ -53,14 +53,18 @@ export default class UsuarioController {
             //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
             //res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax', secure: true})
 
+            console.log('Token generado:', token);
+
             res.cookie('access_token', token, {
                 httpOnly: true,
                 sameSite: 'Lax',
                 secure: true,
                 maxAge: 3600000,
-                domain: 'https://petshop.alwaysdata.net'
+                domain: '.alwaysdata.net'
             });
 
+            console.log('Cookie configurada:', res.get('Set-Cookie'));
+            
             res.status(200).json({ mensaje: 'Sesion iniciada.' })
         } catch (error) {
             console.error(error)
