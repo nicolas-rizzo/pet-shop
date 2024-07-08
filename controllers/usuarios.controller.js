@@ -53,18 +53,18 @@ export default class UsuarioController {
             //res.cookie('token', token, { httpOnly: true, secure: process.env.COOKIE_HTTPS, sameSite: 'Strict', maxAge: 1000 * 60 * 60 })
             //res.cookie('access_token', token, {httpOnly: true, sameSite: 'Lax', secure: true})
 
-            console.log('Dominio del request:', req.hostname);  // Para el nombre del host
-            console.log('Dominio del request:', req.headers.host);  // O a través de los headers
+            //console.log('Dominio del request:', req.hostname);  // Para el nombre del host
+            //console.log('Dominio del request:', req.headers.host);  // O a través de los headers
           
             res.cookie('access_token', token, {
                 httpOnly: true,
                 sameSite: 'Lax',
                 secure: true,
                 maxAge: 1000 * 60 * 60,
-                domain: 'petshop.alwaysdata.net'
+                domain: 'pet-shop-ten-ruddy.vercel.app',
             })
 
-            console.log('Cookie configurada:', res.get('Set-Cookie')); 
+            //console.log('Cookie configurada:', res.get('Set-Cookie')); 
 
             res.status(200).json({ 
                 mensaje: 'Sesion iniciada.' 
