@@ -58,7 +58,7 @@ export default class UsuarioController {
           
             res.cookie('access_token', token, {
                 httpOnly: true,
-                sameSite: 'Lax',
+                sameSite: 'None',
                 secure: true,
                 maxAge: 1000 * 60 * 60,
                 domain: 'pet-shop-ten-ruddy.vercel.app',
