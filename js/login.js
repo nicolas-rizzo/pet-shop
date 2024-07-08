@@ -27,7 +27,7 @@ form.addEventListener('submit', async (e)=>{
         if (userResponse) {
             form.reset();
             Swal.fire({
-                position: "top-center",
+                position: "center",
                 icon: "success",
                 title: "Session Iniciada Correctamente",
                 showConfirmButton: false,
